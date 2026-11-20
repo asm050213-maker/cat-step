@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+<script>window.__IS_TOUCH = (window.matchMedia && matchMedia("(pointer: coarse)").matches) || ("ontouchstart" in window); if(window.__IS_TOUCH) document.documentElement.classList.add("is-touch");</script>
+<title>묘적 · 이벤트 룸</title>
+<link rel="icon" type="image/png" sizes="64x64" href="icons/icon-64.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
+<meta name="theme-color" content="#5a3a22">
+
+<!-- v38: 보금자리 상단 출입로/크롭 및 철거 후 암전 멈춤 수정 -->
+<meta name="theme-color" content="#8f79c9">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+<div id="app" class="isaac-ui">
+  <div class="sky-overlay" id="sky-overlay"></div>
+  <div class="cloud" id="cloud1" style="width:180px;height:60px;top:8%;left:6%;"></div>
+  <div class="cloud" id="cloud2" style="width:220px;height:70px;top:14%;left:38%;"></div>
+  <div class="cloud" id="cloud3" style="width:160px;height:55px;top:6%;left:68%;"></div>
+  <div class="cloud" id="cloud4" style="width:260px;height:80px;top:20%;left:78%;"></div>
+  <div class="cloud" id="cloud5" style="width:190px;height:65px;top:22%;left:18%;"></div>
+  <div class="lightning-overlay" id="lightning"></div>
+  <div class="season-tint" id="season-tint"></div>
+  <canvas id="fx-layer"></canvas>
+
+  <header>
+    <div class="title-block">
+      <h1 id="home-title" role="button" tabindex="0" title="처음 화면으로 돌아가기">묘적</h1>
+      <span class="stage-badge" id="stage-badge">성장기</span>
+      <span class="day-count" id="day-count">1일차</span>
+      <button class="dex-btn" id="dex-btn">📖 도감</button>
+    </div>
+    <div class="stat-panel">
+      <div class="stat" id="stat-hunger">
+        <div class="icon">🍖</div>
+        <div>
+          <div class="label">배고픔</div>
+          <div class="bar-track"><div class="bar-fill" id="bar-hunger" style="width:70%; background:var(--coral);"></div></div>
+        </div>
+      </div>
+      <div class="stat" id="stat-fun">
+        <div class="icon">🧶</div>
+        <div>
+          <div class="label">재미도</div>
+          <div class="bar-track"><div class="bar-fill" id="bar-fun" style="width:70%; background:#5BA6E5;"></div></div>
+        </div>
+      </div>
+      <div class="stat" id="stat-aff">
+        <div class="icon">💜</div>
+        <div>
+          <div class="label">애정도</div>
+          <div class="hearts" id="hearts-display">🤍🤍🤍🤍🤍</div>
+          <div class="bar-track"><div class="bar-fill" id="bar-aff" style="width:20%; background:#E86FA8;"></div></div>
+        </div>
+      </div>
+      <div class="stat" id="stat-love" style="display:none;">
+        <div class="icon" id="love-icon">🤍</div>
+        <div>
+          <div class="label">연인</div>
+          <div class="love-carry" id="love-carry"></div>
+        </div>
+      </div>
+      <div class="stat" id="stat-risk">
+        <div class="icon" id="risk-icon">☀️</div>
+        <div>
+          <div class="label">위험도</div>
+          <div class="bar-track"><div class="bar-fill" id="bar-risk" style="width:0%; background:var(--good);"></div></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="trail-wrap">
+      <div class="trail" id="trail"></div>
+    </div>
+
+    <div class="track-card" id="track-card">
+      <div class="room-top-row">
+        <div class="loc-badge" id="loc-badge">📍 골목</div>
+        <div class="cat-caption" id="cat-caption">평범한 몸매</div>
+      </div>
+      <div class="room-wrap" id="room-wrap">
+        <canvas id="room-canvas"></canvas>
+        <div class="minimap" id="minimap" aria-label="지도"></div>
+        <div id="isaac-grade" aria-hidden="true"><div class="vg"></div><div class="ink"></div></div>
+        <div class="isaac-wrap" id="isaac-wrap"><div id="isaac-hud"></div><div class="skill-hud" id="skill-hud"></div></div>
+        <div class="theft-hud" id="theft-hud"></div>
+        <div class="kitten-hud" id="kitten-hud"></div>
+        <div class="skill-dock" id="skill-dock"></div>
+        <div class="fire-hud" id="fire-hud"></div>
+        <div class="road-game" id="road-game"><canvas id="road-canvas"></canvas></div>
+        <div class="room-popup" id="room-popup">
+          <span class="popup-icon" id="popup-icon">🍽️</span>
+          <div>
+            <div class="popup-title" id="popup-title"></div>
+            <div class="popup-desc" id="popup-desc">Space로 상호작용</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tribute-box" id="tribute-box" style="display:none;"><h4>👑 받은 조공 <span id="tribute-count"></span></h4><div class="tribute-chips" id="tribute-chips"></div></div>
+
+    <div class="hint-bar">
+      <span><kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd> / <kbd>WASD</kbd> 이동</span>
+      <span><kbd>Space</kbd> 조사하기</span>
+    </div>
+
+    <div class="toast" id="toast"></div>
+  </main>
+
+  <div class="trail-tip" id="trail-tip"></div>
+
+
+  <!-- 게임 시작 후 표시되는 조작 튜토리얼 -->
+  <div id="tutorial-overlay" aria-live="polite">
+    <section class="tutorial-card" role="dialog" aria-modal="false" aria-labelledby="tutorial-title">
+      <div class="tutorial-top">
+        <span class="tutorial-paw">🐾</span>
+        <span class="tutorial-count" id="tutorial-count">기본 조작 · 1/2</span>
+      </div>
+      <h2 class="tutorial-title" id="tutorial-title">골목을 걸어 보자</h2>
+      <p class="tutorial-desc" id="tutorial-desc">방향키 또는 WASD를 눌러 고양이를 움직여 봐.</p>
+      <div class="tutorial-foot">
+        <button type="button" class="tutorial-skip" id="tutorial-skip">튜토리얼 건너뛰기</button>
+        <span class="tutorial-status" id="tutorial-status">이동하면 자동으로 다음 단계로 넘어가요</span>
+        <button type="button" class="tutorial-next" id="tutorial-next" disabled>다음</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- 화면 암전(컷신·화재 연출용) -->
+  <div id="dim-fade" aria-hidden="true"></div>
+
+  <!-- 컷신 -->
+  <div class="cutscene" id="cutscene">
+    <div class="cs-vignette"></div>
+    <div class="cs-bar top"></div>
+    <div class="cs-bar bottom"></div>
+    <div class="cs-illust" id="cs-illust"><img id="cs-img" alt="" /></div>
+    <div class="cs-body" id="cs-body">
+      <div class="cs-emoji" id="cs-emoji"></div>
+      <div class="cs-text" id="cs-text"></div>
+      <div class="cs-next" id="cs-next">클릭해서 계속 ▸</div>
+      <div class="cs-opts" id="cs-opts"></div>
+    </div>
+  </div>
+
+  <!-- 오프닝: 타이틀 → 인트로 → 하늘 안내 → 조작/규칙 (마지막 버튼 #start-btn 이 게임 시작) -->
+  <div class="overlay show opening" id="start-overlay">
+    <div class="op-sky" aria-hidden="true">
+      <div class="op-stage"><div class="op-zoom" id="op-zoom">
+        <img class="op-plate" alt="" src="assets/img_2.webp">
+        <div id="op-fx"></div>
+      </div></div>
+      <div id="op-flies"></div>
+      <div class="op-veil"></div>
+    </div>
+
+    <!-- 1. 타이틀 -->
+    <section class="op-scene on" id="op-title">
+      <div class="op-title-box">
+        <h1 class="op-title-main">묘적</h1>
+        <div class="op-title-actions">
+          <button class="op-btn" id="op-begin" type="button">여정 시작하기</button>
+          <button class="op-btn ghost op-dex-link" id="op-dex" type="button">📖 엔딩 도감</button>
+        </div>
+      </div>
+      <div class="op-foot">🐾 클릭 또는 Space</div>
+    </section>
+
+    <!-- 2. 세계관 인트로 -->
+    <section class="op-scene" id="op-intro">
+      <div class="op-bar t"></div><div class="op-bar b"></div>
+      <button class="op-btn ghost op-skip" id="op-skip" type="button">건너뛰기 ⏭</button>
+      <div class="op-line" id="op-line"></div>
+      <div class="op-dots" id="op-dots"></div>
+      <div class="op-hint">클릭 · Space · → 로 계속</div>
+    </section>
+
+    <!-- 3. 출발 전 확인: 조작키 · 핵심 · 엔딩 (설명은 한 줄씩) -->
+    <section class="op-scene" id="op-rules">
+      <h2 class="op-h">조작키 · 생존 가이드 · 엔딩</h2>
+      <p class="op-lead">출발 전에 이것만 확인해요.</p>
+      <div class="op-rules">
+        <div class="op-card">
+          <h3>🎮 기본 조작</h3>
+          <div class="op-row"><span>걸어 다니기</span><div class="op-touch">👆 화면 드래그</div><div class="op-keys"><kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd></div></div>
+          <div class="op-row op-kbd-only"><span>WASD로도 이동</span><div class="op-keys"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></div></div>
+          <div class="op-row"><span>가까운 물건 조사하기</span><div class="op-touch">👆 물건 탭</div><div class="op-keys"><kbd>Space</kbd></div></div>
+          <div class="op-row"><span>선택 · 사냥 · 눈치 싸움</span><div class="op-touch">👆 탭</div><div class="op-keys"><kbd class="mouse">🖱️ 클릭</kbd></div></div>
+        </div>
+        <div class="op-card">
+          <h3>🐈 핵심 생존 가이드</h3>
+          <div class="op-li"><b>세 가지 마음</b>
+            <ul class="op-mind">
+              <li><span class="mi">🍖</span><b>배고픔</b><em>(굶지 않게!)</em></li>
+              <li><span class="mi">🧶</span><b>재미도</b><em>(스릴 넘치게!)</em></li>
+              <li><span class="mi">💜</span><b>애정도</b><em>(냥줍·입양?)</em></li>
+            </ul></div>
+          <div class="op-li" style="margin-bottom:0"><b>⚠️ 위험한 것</b><br>개·사람·덫에 닿으면 배고픔이 닳아요. 하늘이 어두울수록 위험해요.</div>
+        </div>
+        <div class="op-card op-ends">
+          <h3>📖 엔딩 <span id="op-end-count" style="font-weight:400;font-size:11.5px;opacity:.8"></span></h3>
+          <div class="op-end-grid" id="op-end-grid"></div>
+          <button class="op-btn ghost sm" id="op-dex2" type="button" style="margin-top:8px">자세히 보기</button>
+        </div>
+      </div>
+      <div class="op-nav">
+        <button class="op-btn" id="start-btn" type="button">🐾 출발하기</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="ib-flash" id="ib-flash"></div>
+  <div id="item-banner" aria-live="polite"><div class="ib-ico" id="ib-ico"></div><div class="ib-tag" id="ib-tag"></div><div class="ib-name" id="ib-name"></div><div class="ib-desc" id="ib-desc"></div></div>
+  <div id="vs-intro" aria-hidden="true">
+    <div class="vs-bg"></div><div class="vs-vig"></div>
+    <div class="vs-side vs-l"><img id="vs-me" alt=""><div class="vs-name">나의 고양이</div><div class="vs-sub" id="vs-me-sub"></div></div>
+    <div class="vs-mid">VS</div>
+    <div class="vs-side vs-r"><img id="vs-foe" alt=""><div class="vs-name" id="vs-foe-name">보스 고양이</div><div class="vs-sub" id="vs-foe-sub"></div></div>
+    <div class="vs-skip">클릭하거나 Space를 누르면 건너뛰기</div>
+  </div>
+
+  <div class="end-fade" id="end-fade"></div>
+  <div class="end-lids" id="end-lids"><i class="lid t"></i><i class="lid b"></i></div>
+
+  <!-- 선택 이벤트 오버레이 -->
+  <div class="overlay" id="choice-overlay">
+    <div class="modal">
+      <h2 id="choice-title">고양이 선택창</h2>
+      <p id="choice-desc"></p>
+      <div class="opts" id="choice-opts"></div>
+    </div>
+  </div>
+
+  <!-- 사냥 미니게임 -->
+  <div class="overlay" id="hunt-overlay">
+    <div class="modal hunt-modal">
+      <h2 id="hunt-title">사냥!</h2>
+      <p id="hunt-sub">움직이는 사냥감을 클릭해 발톱으로 공격하세요!</p>
+      <div class="hunt-field" id="hunt-field"><div class="hunt-prey" id="hunt-prey"><span id="hunt-prey-ic"></span></div></div>
+      <div class="hunt-pips" id="hunt-pips"></div>
+    </div>
+  </div>
+
+  <!-- 비밀 아지트: 수상한 틈에서 냥스킬 카드 3장 중 1장을 고른다 -->
+  <div class="overlay" id="secret-overlay">
+    <div class="gacha" id="gacha">
+      <div class="gacha-bg"></div>
+      <div class="gacha-rays"></div>
+      <h2 class="gacha-title" id="gacha-title">🧱 비밀 아지트</h2>
+      <p class="gacha-sub" id="gacha-sub"></p>
+      <div class="gacha-row" id="gacha-row"></div>
+      <div class="gacha-flavor" id="gacha-flavor"></div>
+      <div class="gacha-btns">
+        <button class="gacha-go" id="gacha-confirm" type="button" hidden>이걸로 정했다!</button>
+        <button class="gacha-skip" id="gacha-leave" type="button" hidden>다 두고 가기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 벌 침 피하기 미니게임 -->
+  <div class="overlay" id="bee-overlay">
+    <div class="modal bee-modal">
+      <h2><img class="v21-event-badge" src="assets/img_3.webp" alt="벌 공격 경고"> 꽃밭의 벌 — 달려드는 벌 떼를 피해라!</h2>
+      <div class="bee-hud"><span id="bee-wave">웨이브 1 / 3</span><span id="bee-hp">❤️❤️❤️</span></div>
+      <div class="bee-field" id="bee-field"><canvas id="bee-canvas"></canvas><div class="bee-msg" id="bee-msg"></div></div>
+      <p class="bee-help" id="bee-help"></p>
+    </div>
+  </div>
+
+  <!-- 서열 싸움: 행동 예측형 고양이 배틀 -->
+  <div class="overlay" id="duel-overlay">
+    <div class="modal duel-modal">
+      <section class="duel-guide">
+        <div class="duel-guide-heading">
+          <span class="duel-guide-paw">🐾</span>
+          <div>
+            <h2 id="duel-title">고양이들의 서열싸움은 가위바위보와 비슷해요!</h2>
+            <p>상대의 행동을 살펴보고 알맞은 행동을 골라 승리를 쟁취하세요!</p>
+          </div>
+        </div>
+        <div class="duel-guide-body">
+          <div class="duel-guide-cycle">
+            <strong>상성 관계를 기억하세요!</strong>
+            <div class="duel-cycle-line"><span>피하기</span><b>&lt;</b><span>하악질</span><b>&lt;</b><span>싸우기</span><b>&lt;</b><span>피하기</span></div>
+            <small>같은 행동은 무승부예요.</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="duel-battle">
+        <div class="duel-hud">
+          <div class="duel-hud-side">
+            <div class="duel-hud-face player-face">🐱</div>
+            <div class="duel-hud-info">
+              <div class="duel-hud-label"><b>나</b><span id="duel-me">0/2</span></div>
+              <div class="duel-hp"><i id="duel-player-fill"></i></div>
+            </div>
+          </div>
+          <div class="duel-hud-center" id="duel-goal">먼저 2번 이기면 승리!</div>
+          <div class="duel-hud-side opponent-hud">
+            <div class="duel-hud-info">
+              <div class="duel-hud-label"><b id="duel-foe-name">상대 고양이</b><span id="duel-foe">0/2</span></div>
+              <div class="duel-hp foe-hp"><i id="duel-foe-fill"></i></div>
+            </div>
+            <div class="duel-hud-face foe-face">😾</div>
+          </div>
+        </div>
+
+        <div class="duel-arena" id="duel-arena">
+          <div class="duel-sky-glow"></div>
+          <div class="duel-cloud cloud-one"></div>
+          <div class="duel-cloud cloud-two"></div>
+          <div class="duel-ground"></div>
+          <div class="duel-cue-bubble" id="duel-cue">상대 고양이의 몸짓을 살펴보세요.</div>
+          <button class="duel-catnip" id="duel-catnip" type="button" hidden></button>
+          <div class="duel-cat player-cat" id="duel-player-cat">
+            <img id="duel-player-sprite" alt="내 고양이">
+            <span>나</span>
+          </div>
+          <div class="duel-vs-mark">VS</div>
+          <div class="duel-fx-layer" id="duel-fx-layer" aria-hidden="true"></div>
+          <div class="duel-cat opponent-cat" id="duel-foe-cat">
+            <img id="duel-foe-sprite" alt="상대 고양이">
+            <span>상대</span>
+          </div>
+          <div class="duel-arena-hint">상대의 자세를 보고 다음 행동을 예측해 봐!</div>
+        </div>
+      </section>
+
+      <section class="duel-controls">
+        <div class="duel-reveal" id="duel-reveal" aria-live="polite">상대의 행동을 예상해 아래에서 선택하세요.</div>
+        <div class="duel-opts">
+          <button class="duel-btn dodge-btn" data-move="dodge" type="button"><span class="duel-key">1</span><span class="duel-ic"><img data-duel-action="dodge" alt="피하기 자세" draggable="false"></span><b>피하기</b><small>공격을 피하고 거리 벌리기</small></button>
+          <button class="duel-btn growl-btn" data-move="growl" type="button"><span class="duel-key">2</span><span class="duel-ic"><img data-duel-action="growl" alt="하악질 자세" draggable="false"></span><b>하악질</b><small>기세로 위협</small></button>
+          <button class="duel-btn fight-btn" data-move="fight" type="button"><span class="duel-key">3</span><span class="duel-ic"><img data-duel-action="fight" alt="싸우기 자세" draggable="false"></span><b>싸우기</b><small>몸으로 맞서기</small></button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- 엔딩 오버레이 -->
+  <div class="overlay" id="end-overlay">
+    <div class="modal">
+      <img class="end-art" id="end-art" alt="">
+      <div class="end-emoji" id="end-emoji">🐾</div>
+      <h2 id="end-title"></h2>
+      <p id="end-desc"></p>
+      <div class="end-stats" id="end-stats"></div>
+      <div class="end-btns">
+        <button class="restart-btn ghost" id="end-dex-btn">📖 엔딩 도감</button>
+        <button class="restart-btn" id="restart-btn">처음부터 다시</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 도감 오버레이 -->
+  <div class="overlay" id="dex-overlay">
+    <div class="modal dex-modal">
+      <h2>📖 고양이 엔딩 도감</h2>
+      <div class="dex-count" id="dex-count"></div>
+      <div class="dex-grid" id="dex-grid"></div>
+      <div class="tribute-box" id="dex-skill-box"><h4>🐾 냥스킬 도감 <span id="dex-skill-count"></span></h4><div class="tribute-chips" id="dex-skill-chips"></div></div>
+      <div class="tribute-box" id="dex-tribute-box"><h4>👑 조공 도감 <span id="dex-tribute-count"></span></h4><div class="tribute-chips" id="dex-tribute-chips"></div></div>
+      <div class="dex-actions">
+        <button class="restart-btn ghost" id="dex-reset-btn">기록 초기화</button>
+        <button class="restart-btn" id="dex-close-btn">닫기</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="js/game.dev.js"></script>
+<script>
+/* 서열싸움 말풍선 높이를 CSS 변수로 전달 (모바일에서 아레나/고양이 위치 계산용) */
+(function(){
+  var a=document.getElementById("duel-arena"), c=document.getElementById("duel-cue");
+  if(!a||!c) return;
+  function set(){ var h=c.offsetHeight; if(h) a.style.setProperty("--cue-h", (h+6)+"px"); }
+  if(window.ResizeObserver) new ResizeObserver(set).observe(c);
+  window.addEventListener("resize", set); set();
+})();
+</script>
+<div id="tj-rot">📱 가로로 돌리면 더 넓게 볼 수 있어요</div>
+<script src="js/images.js"></script>
+</body>
+</html>
