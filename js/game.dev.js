@@ -103,9 +103,9 @@ window.addEventListener("DOMContentLoaded", function(){
     { key:"catgrass", icon:"🌿", label:"강아지풀", tier:"common", hunger:0, fun:+8, affection:0, weight:-1, risk:-1, exercise:true, msg:"강아지풀을 살랑살랑 흔들며 놀았다" , places:["park","lot","housing"] },
     { key:"trap",     icon:"🪤", label:"쥐덫", tier:"rare", hunger:0, fun:+10, affection:0, weight:0, risk:+18, bad:true, msg:"쥐덫 근처에서 깜짝 놀랐다! 심장이 쫄깃했다" , places:["lot","road","stream","park","housing"] },
     { key:"dog",      icon:"🐕", label:"사나운 개", tier:"rare", hunger:-6, fun:+8, affection:0, weight:-2, risk:+16, bad:true, exercise:true, msg:"사나운 개가 짖으며 쫓아와 정신없이 도망쳤다!" , places:["road","park"] },
-    { key:"bug",      icon:"🦗", label:"벌레", tier:"uncommon", hunger:0, fun:+15, affection:+12, weight:-2, risk:-1, exercise:true, msg:"벌레를 사냥해 주인에게 자랑스럽게 물어다 줬다", msgUnadopted:"벌레를 사냥했다. 아직 물어다 줄 주인은 없다" , places:["lot","park","stream"] },
-    { key:"bird",     icon:"🐦", label:"참새", tier:"rare", hunger:0, fun:+30, affection:+22, weight:-3, risk:-1, exercise:true, msg:"참새를 사냥해 선물했다! 주인이 놀라며 좋아했다", msgUnadopted:"참새를 사냥했다. 자랑할 상대가 없어 조금 허전하다" , places:["park","stream"] },
-    { key:"cash",     icon:"💵", label:"지폐", tier:"rare", hunger:0, fun:0, affection:+20, weight:0, risk:-1, mystery:true, msg:"...정체는 지폐였다! 주인이 어이없어하면서도 사랑스러워한다", msgUnadopted:"...정체는 지폐였다. 아직 주인이 없어 그냥 물고 다닐 뿐이다" , places:["market_st","market","alley"] },
+    { key:"bug",      icon:"🦗", label:"벌레", tier:"uncommon", hunger:0, fun:+15, affection:+12, weight:-2, risk:-1, exercise:true, msg:"벌레를 사냥해 집사에게 자랑스럽게 물어다 줬다", msgUnadopted:"벌레를 사냥했다. 아직 물어다 줄 집사는 없다" , places:["lot","park","stream"] },
+    { key:"bird",     icon:"🐦", label:"참새", tier:"rare", hunger:0, fun:+30, affection:+22, weight:-3, risk:-1, exercise:true, msg:"참새를 사냥해 선물했다! 집사가 놀라며 좋아했다", msgUnadopted:"참새를 사냥했다. 자랑할 상대가 없어 조금 허전하다" , places:["park","stream"] },
+    { key:"cash",     icon:"💵", label:"지폐", tier:"rare", hunger:0, fun:0, affection:+20, weight:0, risk:-1, mystery:true, msg:"...정체는 지폐였다! 집사가 어이없어하면서도 사랑스러워한다", msgUnadopted:"...정체는 지폐였다. 아직 집사가 없어 그냥 물고 다닐 뿐이다" , places:["market_st","market","alley"] },
     { key:"paper",    icon:"📄", label:"폐지", tier:"common", hunger:0, fun:+14, affection:+6, weight:0, risk:0, mystery:true, paperPlay:true, msg:"...정체는 폐지였다! 바스락거리는 종이를 앞발로 툭툭 치며 한참을 놀았다", msgUnadopted:"...정체는 폐지였다! 쓸모는 없어도 바스락거리는 소리가 재미있다" , places:["alley","market_st","road","home"] },
     { key:"pushy",    icon:"🧍", label:"들이대는 사람", tier:"uncommon", hunger:0, fun:+6, affection:0, weight:0, risk:+4, bad:true, msg:"낯선 사람이 억지로 만지려 해서 잔뜩 스트레스를 받았다" , places:["market","playground","market_st","housing"] },
     { key:"kiss",     icon:"😘", label:"뽀뽀하려는 사람", tier:"uncommon", hunger:0, fun:+5, affection:0, weight:0, risk:+7, bad:true, msg:"낯선 사람이 갑자기 뽀뽀하려고 해서 화들짝 놀라 도망쳤다" , places:["market","playground","housing"] },
@@ -116,7 +116,7 @@ window.addEventListener("DOMContentLoaded", function(){
     { key:"clean",    icon:"🌺", label:"깨끗한 골목", tier:"uncommon", hunger:0, fun:+2, affection:0, weight:0, risk:-3, msg:"화사하고 깨끗한 골목을 지나갔다" , places:["alley","housing"] },
     { key:"empty",    icon:"🍃", label:"조용한 길", tier:"common", hunger:0, fun:0, affection:0, weight:0, risk:0, msg:"별일 없이 지나갔다" , places:["any"] },
   ];
-  const TREAT_ITEM = { key:"treat", icon:"🍬", label:"고급 츄르", tier:"special", food:true, hunger:+30, fun:+10, affection:+6, weight:+2, risk:-2, msg:"주인이 챙겨준 고급 츄르를 냠냠 먹었다" };
+  const TREAT_ITEM = { key:"treat", icon:"🍬", label:"고급 츄르", tier:"special", food:true, hunger:+30, fun:+10, affection:+6, weight:+2, risk:-2, msgUnadopted:"길에서 주운 고급 츄르를 냠냠 먹었다", msg:"집사가 챙겨준 고급 츄르를 냠냠 먹었다" };
 
   /* ---------- 연인 퀘스트: 하트 아이콘이 4단계로 바뀐다 ----------
      0 🤍 만남 → (첫 데이트) → 1 🩷 → (작은 사냥감) → 2 ❤️ → (큰 사냥감) → 3 💖 → (츄르) → 4 💞 잉꼬 부부 */
@@ -224,7 +224,7 @@ window.addEventListener("DOMContentLoaded", function(){
     { key:"rich", emoji:"💰😺", title:"부자냥이", hint:"지폐를 부지런히 물어다 준 결과" },
     { key:"turf_king", emoji:"⚔️👑", title:"고양이들의 왕", hint:"동네 서열의 정점에 서다" },
     { key:"home_chubby", emoji:"🏠😻", title:"사랑받는 집고양이 (통통이)", hint:"살이 오른 채 사랑받은 삶" },
-    { key:"home_affectionate", emoji:"🏠🐈", title:"주인에게 애교떠는 집고양이", hint:"애정도 최고" },
+    { key:"home_affectionate", emoji:"🏠🐈", title:"집사에게 애교떠는 집고양이", hint:"애정도 최고" },
     { key:"wanderer_rough", emoji:"🌧️🐾", title:"거친 길 위의 방랑묘", hint:"위험 속에서도 자유롭게" },
     { key:"muscle_legend", emoji:"💪🐈‍⬛", title:"전설의 근육냥이", hint:"운동과 사냥의 결실" },
     { key:"chubby_famous", emoji:"🐽🐱", title:"동네 유명 통통이", hint:"먹는 것을 너무 사랑한 결과" },
@@ -326,6 +326,7 @@ window.addEventListener("DOMContentLoaded", function(){
   const heartsDisplay = document.getElementById("hearts-display");
   const trailEl = document.getElementById("trail");
   const catCaption = document.getElementById("cat-caption");
+  const PLAYER_SIZE = 0.85;   // 주인공 고양이 그림 크기 (연인보다 조금 더 크게)
   let catScale = 1, catGray = false; // 방 캔버스에서 고양이를 그릴 때 체형/배고픔 반영
   const toastEl = document.getElementById("toast");
   const startOverlay = document.getElementById("start-overlay");
@@ -745,6 +746,7 @@ window.addEventListener("DOMContentLoaded", function(){
     adoption2: __IMG.CUT_IMG_adoption2,
     kingWall: __IMG.CUT_IMG_kingWall,
     kitten: __IMG.CUT_IMG_kitten,
+    kittenIndependence: __IMG.CUT_IMG_kittenIndependence,
     leaderDark: __IMG.CUT_IMG_leaderDark,
     leaderBright: __IMG.CUT_IMG_leaderBright,
     trap1: __IMG.CUT_IMG_trap1,
@@ -784,10 +786,14 @@ window.addEventListener("DOMContentLoaded", function(){
       { img: CUT_IMG.lovebirds3, text:"골목의 고양이들이 둘을 올려다보며 수군거린다.\n“…저 둘, 정말 잉꼬 부부 같아.”" },
     ],
     rich: [
-      { img: CUT_IMG.rich, text:"물어다 준 종이 뭉치가 어느새 한가득.\n주인의 표정이 달라졌다.\n\n오늘부터 간식의 등급이 올라간다." },
+      { img: CUT_IMG.rich, text:"물어다 준 종이 뭉치가 어느새 한가득.\n집사의 표정이 달라졌다.\n\n오늘부터 간식의 등급이 올라간다." },
     ],
     kitten: [
       { img: CUT_IMG.kitten, text:"작고 따뜻한 것들이 배에 파고든다.\n\n이제 이 고양이는 혼자가 아니다." },
+    ],
+    // 성장한 아이들이 가족의 품을 떠나는 순간 — 컷씬이 끝나기 전에는 새끼를 지우지 않는다.
+    kittenIndependence: [
+      { img: CUT_IMG.kittenIndependence, text:"어느덧 혼자서도 골목을 걸을 만큼 자랐다.\n한 번 뒤돌아본 아이들은 새로운 길로 발걸음을 옮겼다.\n\n씩씩하게 잘 지내렴." },
     ],
     king: [
       { img: CUT_IMG.kingWall, text:"골목 끝까지, 이제 아무도 앞을 막지 않는다.\n\n고양이들의 왕이 되었다." },
@@ -1066,7 +1072,7 @@ window.addEventListener("DOMContentLoaded", function(){
     dayCount.textContent = state.day + "일차 · " + season.icon + " " + ((SEASON_FOLLOWS_STAGE && state.stageIdx === STAGES.length - 1) ? "이듬해 " : "") + season.name;
 
     const w = state.weight;
-    catScale = Math.max(0.72, Math.min(1.35, 1 + w/90));
+    catScale = Math.max(0.72, Math.min(1.2, 1 + w/90));   // 통통해져도 최대 1.2배
     catGray = state.hunger < 20;
 
     let caption;
@@ -1452,11 +1458,33 @@ window.addEventListener("DOMContentLoaded", function(){
         if(k.miss && !k.sulk && n >= 9){ k.sulk = true; state._sulkNew = (state._sulkNew || 0) + 1; }
       }
     });
-    const grown = state.kittens.filter(k=> k.mode !== "lost" && k.mode !== "flee" && (state.kittenTurnCount-k.bornTurn)>=10); // 생후 10턴 독립
+    // 생후 10턴: 독립 예고만 등록한다. 컷씬을 보기 전에 새끼가 갑자기 사라지지 않게 한다.
+    const grown = state.kittens.filter(k=> k.mode !== "lost" && k.mode !== "flee"
+      && k.mode !== "sit"   // 연인에게 맡겨 둔 새끼는 데려온 뒤에 독립한다 (맡긴 새끼가 엄마를 기다리다 사라지지 않게)
+      && k.wish && k.wish.done   // 소원을 이뤄 주기 전에는 독립하지 않는다
+      && !k._independenceQueued && (state.kittenTurnCount-k.bornTurn)>=10);
     if(grown.length){
-      state.kittens = state.kittens.filter(k=> grown.indexOf(k) < 0);
-      state.kittenGrown = (state.kittenGrown || 0) + grown.length;
-      setTimeout(()=> catSay("새끼가 독립했다. 씩씩하게 제 갈 길을 떠난다", 3600), 1200);
+      grown.forEach(k=>{ k._independenceQueued = true; }); // 다음 턴이 와도 중복 예약 방지
+      const familyState = state;
+      runWhenIdle(()=>{
+        if(state !== familyState || state.gameOver) return; // 새 게임이나 엔딩으로 전환된 경우 무시
+        const departing = grown.filter(k=> state.kittens.includes(k));
+        if(!departing.length) return;
+        const leave = ()=>{
+          if(state !== familyState || state.gameOver) return;
+          // 컷씬을 직접 닫은 뒤에만 동행/맡김 목록에서 독립한 새끼를 제거한다.
+          const present = departing.filter(k=>state.kittens.includes(k));
+          state.kittens = state.kittens.filter(k=>!present.includes(k));
+          state.kittenGrown = (state.kittenGrown || 0) + present.length;
+          showToast("🌸 " + present.length + "마리의 새끼 고양이가 씩씩하게 독립했다!");
+          renderKittenHud();
+          renderAll();
+        };
+        // 새끼가 모두 독립하는 순간에만 이별 컷씬을 보여 준다 (아직 곁에 남는 새끼가 있으면 조용히 떠난다)
+        const stay = state.kittens.filter(k=> !departing.includes(k));
+        if(stay.length) leave();
+        else playCutscene({ panels:CUT.kittenIndependence }, leave);
+      });
     }
     const gone = state.kittens.filter(k=> k.mode === "lost" && state.day - k.lostDay >= KITTEN_CFG.lostDays);
     if(gone.length){
@@ -2182,6 +2210,33 @@ window.addEventListener("DOMContentLoaded", function(){
       setTimeout(()=> showToast("💰 잭팟 방이다! 받침대마다 츄르가 놓여 있다"), 900);
     });
   }
+  function askLeaveJackpot(){
+    if(!state || !state.jackpotRoom || state._jpBusy || document.getElementById("jp-ask")) return;
+    if(!document.getElementById("jp-ask-css")){
+      const st = document.createElement("style"); st.id = "jp-ask-css";
+      st.textContent = ".jp-ask{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(48,28,10,.5);}"
+        + ".jp-ask-box{width:min(320px,100%);background:#FFF8EC;border:3px solid #F2B279;border-radius:18px;padding:18px 16px 14px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.3);font-family:inherit;color:#5b3010;}"
+        + ".jp-ask-box h3{margin:0 0 6px;font-size:18px;font-weight:900;}.jp-ask-box p{margin:0 0 14px;font-size:13px;line-height:1.5;font-weight:700;}"
+        + ".jp-ask-btns{display:flex;gap:8px;}.jp-ask-btns button{flex:1;border:0;border-radius:12px;padding:11px 8px;font-size:15px;font-weight:900;font-family:inherit;cursor:pointer;background:#F2B279;color:#5b3010;}"
+        + ".jp-ask-btns button.no{background:#F3E6D4;color:#8a4b17;}.jp-ask-btns button:active{transform:scale(.97);}";
+      document.head.appendChild(st);
+    }
+    const left = state.stashLeft || 0;
+    state.sitterMenu = true; Object.keys(keysDown).forEach(k=> keysDown[k] = false);   // 확인하는 동안 고양이는 멈춘다
+    const ov = document.createElement("div"); ov.id = "jp-ask"; ov.className = "jp-ask";
+    ov.innerHTML = '<div class="jp-ask-box"><h3>정말로 나가시겠습니까?</h3><p>' + (left > 0 ? "아직 츄르가 " + left + "개 남아 있어요." : "츄르를 모두 먹었어요.") + '</p><div class="jp-ask-btns"><button class="yes" type="button">예</button><button class="no" type="button">아니오</button></div></div>';
+    const close = ()=>{ ov.remove(); document.removeEventListener("keydown", onKey, true); if(state) state.sitterMenu = false; };
+    const yes = ()=>{ close(); leaveJackpot(); };
+    const no = ()=>{
+      close();
+      const S = uiScale(); player.y = (roomH || 320) - 22*S - 70*S; state._jpGrace = performance.now() + 700; nearbyIdx = -1;
+    };
+    const onKey = e=>{ if(e.key === "Escape"){ e.preventDefault(); e.stopPropagation(); no(); } };
+    ov.querySelector(".yes").addEventListener("click", yes);
+    ov.querySelector(".no").addEventListener("click", no);
+    document.addEventListener("keydown", onKey, true);
+    document.body.appendChild(ov);
+  }
   function leaveJackpot(){
     if(!state || !state.jackpotRoom || state._jpBusy) return;
     state._jpBusy = true;
@@ -2390,7 +2445,7 @@ window.addEventListener("DOMContentLoaded", function(){
     dog:   { risk:8, speed:0.6,  icon:"🐕", hit:"개에게 물렸다!",               miss:"개가 달려들었지만 간신히 피했다!",  label:"개에게 물림", msg:"쫓아온 개에게 물렸다" },
     pushy: { risk:3, speed:0.52, icon:"🧍", hit:"들이대는 사람에게 붙잡혔다!", miss:"뻗어오는 손길을 간신히 피했다!",    label:"붙잡힘",     msg:"쫓아온 사람에게 붙잡혀 발버둥쳤다" },
     kiss:  { risk:3, speed:0.52, icon:"😘", hit:"뽀뽀 세례를 받았다!",         miss:"날아오는 뽀뽀를 간신히 피했다!",    label:"뽀뽀 세례",  msg:"쫓아온 사람의 뽀뽀를 피하느라 진땀을 뺐다" },
-    owner: { speed:0.74, icon:"👵", hit:"할머니에게 붙잡혔다!", miss:"할머니의 손을 간신히 피했다!", label:"주인에게 붙잡힘", msg:"가판대 주인에게 붙잡혔다" },
+    owner: { speed:0.74, icon:"👵", hit:"할머니에게 붙잡혔다!", miss:"할머니의 손을 간신히 피했다!", label:"집사에게 붙잡힘", msg:"가판대 집사에게 붙잡혔다" },
   };
   let chaseCooldown = 0;
   let onTrap = false;
@@ -2458,7 +2513,9 @@ window.addEventListener("DOMContentLoaded", function(){
         o.x += dx/dist*sp; o.y += dy/dist*sp; return;
       }
       const px = -dy/dist, py = dx/dist, side = Math.random() < 0.5 ? 1 : -1;
-      o.guard = { x:(o.x + player.x)/2 + px*side*110*S, y:(o.y + player.y)/2 + py*side*110*S, t:0, blocked:false };
+      // 신하 고양이의 털색을 분리해 왕(크림색)과 구분한다.
+      o.guard = { x:(o.x + player.x)/2 + px*side*110*S, y:(o.y + player.y)/2 + py*side*110*S,
+        t:0, blocked:false, variant:Math.floor(Math.random()*3) };
       o.blockT = 0;
       sfx("guard");
       showToast("\uD83D\uDE3C 신하 고양이가 달려드는 사람 앞을 막아섰다!");
@@ -2512,7 +2569,7 @@ window.addEventListener("DOMContentLoaded", function(){
   }
 
   /* ================= 도둑고양이: 시장 가판대 먹거리 훔치기 =================
-     가판대 먹거리를 물고 튀면 주인 할머니가 뒤쫓아 온다.
+     가판대 먹거리를 물고 튀면 집사 할머니가 뒤쫓아 온다.
      지도(방) THEFT_CFG.rooms 개를 붙잡히지 않고 지나가면 성공, 붙잡히면 먹거리를 빼앗기고 꿀밤. */
   const THEFT_CFG = { endWins:3, endFails:3, rooms:3, hunger:20, fun:20, weight:1, risk:4, failHunger:-10, failFun:-8, failRisk:8, minDay:3 };
   const OWNER_ITEM = { key:"owner", icon:"👵", label:"시장 할머니", tier:"special", bad:true, msg:"" };
@@ -2535,7 +2592,7 @@ window.addEventListener("DOMContentLoaded", function(){
     setTimeout(()=>{ if(state.theft) showToast("🏃 지도 " + THEFT_CFG.rooms + "개를 붙잡히지 않고 지나가면 성공!"); }, 2200);
     renderTheftHud();
   }
-  // 새 방에 들어올 때: 성공 판정 또는 주인이 문 뒤에서 쫓아 들어온다
+  // 새 방에 들어올 때: 성공 판정 또는 집사가 문 뒤에서 쫓아 들어온다
   function theftOnEnter(fromDir){
     const T = state.theft;
     if(!T || !fromDir || state.fireSearch) return;
@@ -2586,7 +2643,7 @@ window.addEventListener("DOMContentLoaded", function(){
     const msg = "👵 붙잡혔다! 먹거리를 빼앗기고 꿀밤까지 맞았다…";
     state._lastMsg = msg; showToast(msg);
     showDeltas(before);
-    pushHistory({ kind:"item", item:{ icon:"👵", label:"주인에게 붙잡힘", bad:true }, msg:msg }, before);
+    pushHistory({ kind:"item", item:{ icon:"👵", label:"집사에게 붙잡힘", bad:true }, msg:msg }, before);
     renderTheftHud(); renderAll();
     checkForcedAction();
   }
@@ -2692,6 +2749,8 @@ window.addEventListener("DOMContentLoaded", function(){
       const r = 9 * u;
       cat.x = Math.max(r, Math.min(N-r, cat.x + dx*sp*dt));
       cat.y = Math.max(r, Math.min(N-r, cat.y + dy*sp*dt));
+      cat.moving = len > 0.08; if(cat.moving) cat.wt = (cat.wt||0) + dt;
+      if(dx < -0.2) cat.face = -1; else if(dx > 0.2) cat.face = 1;
       if(invuln > 0) invuln -= dt; if(shake > 0) shake -= dt;
       if(msgT > 0){ msgT -= dt; if(msgT <= 0) msgEl.classList.remove("on"); }
 
@@ -2770,8 +2829,9 @@ window.addEventListener("DOMContentLoaded", function(){
       ctx.save();
       if(invuln > 0 && Math.floor(invuln*12)%2 === 0) ctx.globalAlpha = 0.45;
       ctx.font = (30*u) + "px sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
-      const beeCat=v36CatReady(invuln>0.7 ? "face_sad" : "face_default");
-      if(beeCat){ctx.save();ctx.translate(cat.x*dpr,cat.y*dpr);drawMyoSprite(ctx,beeCat,36*u,31*u,16*u);ctx.restore();}
+      const beeRight = (cat.face||1) > 0, beeWalk = !!cat.moving && invuln <= 0.7;
+      const beeCat=v36CatReady(invuln>0.7 ? "face_sad" : (beeWalk ? (beeRight ? "player_walk_" : "player_left_") + (Math.floor((cat.wt||0)*7)%4) : "face_default"));
+      if(beeCat){ctx.save();ctx.translate(cat.x*dpr,cat.y*dpr);if(!beeWalk && beeRight)ctx.scale(-1,1);drawMyoSprite(ctx,beeCat,36*u,31*u,16*u);ctx.restore();}
       else emoDraw(ctx,invuln>0.7 ? "😿" : catFaceNow(),cat.x*dpr,cat.y*dpr);
       ctx.restore();
     }
@@ -2843,9 +2903,40 @@ window.addEventListener("DOMContentLoaded", function(){
   const FREE_ROAM = true;   // false로 바꾸면 예전처럼 길이 아닌 곳엔 못 들어간다
   // 도로의 주행 차량 위치는 그리기와 충돌 판정이 같은 함수를 사용한다.
   const ROAD_LANES = [   // 큰길 그림의 4개 차선 중심(% 높이). 위 두 차선은 왼쪽, 아래 두 차선은 오른쪽으로 달린다
-    { y:34.3, dir:-1, sp:0.95, icons:["🚗","🚙"] }, { y:43, dir:-1, sp:1.2, icons:["🚕","🚗"] },
-    { y:52.3, dir:1, sp:1.05, icons:["🚙","🚗"] },  { y:61.5, dir:1, sp:1.3, icons:["🚗","🚕"] }
+    { y:34.3, dir:-1, sp:0.95, icons:["🚗","🚙"], vi:[0,3] }, { y:43, dir:-1, sp:1.2, icons:["🚕","🚗"], vi:[5,2] },
+    { y:52.3, dir:1, sp:1.05, icons:["🚙","🚗"], vi:[1,6] },  { y:61.5, dir:1, sp:1.3, icons:["🚗","🚕"], vi:[4,7] }
   ];
+  /* 자동차 색 8종: 기본 그림(빨강·크림)을 색만 돌려서 만든다. 한 차선의 두 대, 이웃 차선의 차가 서로 다른 색이 되게 배치한다. */
+  const CAR_VARIANTS = [ {s:"red",h:0}, {s:"cream"}, {s:"red",h:120}, {s:"red",h:215}, {s:"red",h:55}, {s:"cream",t:[170,232,205]}, {s:"red",h:285}, {s:"cream",t:[88,92,108]} ];
+  const _carCache = {};
+  function carSprite(vi){
+    const V = CAR_VARIANTS[((vi % 8) + 8) % 8];
+    const base = assetImg(V.s === "red" ? "sprite_car_red" : "sprite_car_blue");
+    if(!base) return null;
+    const key = ((vi % 8) + 8) % 8;
+    if(_carCache[key]) return _carCache[key];
+    if(!V.h && !V.t){ _carCache[key] = base; return base; }
+    try{
+      const cv = document.createElement("canvas"); cv.width = 248; cv.height = 120;
+      const c = cv.getContext("2d"); c.drawImage(base, 0, 0, 248, 120);
+      const id = c.getImageData(0, 0, 248, 120), d = id.data;
+      if(V.h){
+        const a = V.h*Math.PI/180, co = Math.cos(a), si = Math.sin(a);
+        const m = [ .213+co*.787-si*.213, .715-co*.715-si*.715, .072-co*.072+si*.928,
+                    .213-co*.213+si*.143, .715+co*.285+si*.140, .072-co*.072-si*.283,
+                    .213-co*.213-si*.787, .715-co*.715+si*.715, .072+co*.928+si*.072 ];
+        for(let i = 0; i < d.length; i += 4){
+          const r = d[i], g = d[i+1], b = d[i+2];
+          d[i]   = Math.max(0, Math.min(255, m[0]*r + m[1]*g + m[2]*b));
+          d[i+1] = Math.max(0, Math.min(255, m[3]*r + m[4]*g + m[5]*b));
+          d[i+2] = Math.max(0, Math.min(255, m[6]*r + m[7]*g + m[8]*b));
+        }
+      } else {
+        for(let i = 0; i < d.length; i += 4){ d[i] = d[i]*V.t[0]/255; d[i+1] = d[i+1]*V.t[1]/255; d[i+2] = d[i+2]*V.t[2]/255; }
+      }
+      c.putImageData(id, 0, 0); _carCache[key] = cv; return cv;
+    }catch(err){ _carCache[key] = base; return base; }
+  }
   function roadTrafficPositions(w, h, S, now){
     if(!w || !h) return [];
     const t = (now == null ? performance.now() : now) / 21, span = w + 100*S, out = [];
@@ -2853,7 +2944,7 @@ window.addEventListener("DOMContentLoaded", function(){
       const y = pctToXY("road", 50, L.y).y;
       [0, 0.5].forEach((ph, ci)=>{
         const p = ((t*L.sp + (ph + li*0.17)*span) % span) - 50*S;
-        out.push({ x:(L.dir > 0 ? p : w - p), y, icon:L.icons[ci], flip:L.dir < 0, dir:L.dir });
+        out.push({ x:(L.dir > 0 ? p : w - p), y, icon:L.icons[ci], flip:L.dir < 0, dir:L.dir, vi:L.vi[ci] });
       });
     });
     return out;
@@ -2887,8 +2978,10 @@ window.addEventListener("DOMContentLoaded", function(){
       if(o.consumed || o.seasonHazard) return;
       const dist = Math.hypot(player.x - o.x, player.y - o.y);
       // 낙엽/눈 아래의 물건은 가까이 다가가야 정체가 드러난다. 수염 센서는 미리 감지한다.
+      if(o._sensedKind && dist < 54*S) o._sensedKind = null;   // 가까이 다가가면 반투명 덮개가 걷힌다
       if(o.hiddenUnder && !o.hiddenRevealed && (hasSkill("whisker") || dist < 54*S)){
         o.hiddenRevealed = true; _revN++; _revKind = o.hiddenUnder;
+        if(hasSkill("whisker") && dist >= 54*S) o._sensedKind = o.hiddenUnder;   // 수염으로 먼저 알아챈 것: 낙엽/눈은 반투명하게 남겨 둔다
       }
     });
     if(_revN){   // 몇 개가 드러나도 말풍선은 한 번만, 이유가 보이게 고양이가 말한다
@@ -2990,7 +3083,7 @@ window.addEventListener("DOMContentLoaded", function(){
     }
     const w = roomW, h = roomH, m = 22 * uiScale();
     const exits = (state.homeInside || state.jackpotRoom) ? {} : LOC_BY_ID[state.currentLoc].exits;
-    if(state.jackpotRoom && !state._jpBusy && performance.now() > (state._jpGrace || 0) && player.y > h - m - 3*uiScale() && Math.abs(player.x - w/2) < 38*uiScale()){ leaveJackpot(); return; }
+    if(state.jackpotRoom && !state._jpBusy && performance.now() > (state._jpGrace || 0) && player.y > h - m - 3*uiScale() && Math.abs(player.x - w/2) < 38*uiScale()){ askLeaveJackpot(); return; }
     const gapHalf = 36 * uiScale();     // 벽돌담이 뚫린 입구의 반폭 (여기로만 나갈 수 있다)
     const curLoc = state.currentLoc;
     if(player.y < m){
@@ -3015,7 +3108,7 @@ window.addEventListener("DOMContentLoaded", function(){
           if(_n < (state._homeClick || 0)){ state._homeClick = 0; toggleHome(true); }
           else if(_n > (state._homeHintT || 0)){ state._homeHintT = _n + 5000; catSay("집을 눌러야 들어갈 수 있어"); }
         }
-        else if(state.homeInside && hit(L0 && L0.exit)) toggleHome(false);
+        else if(state.homeInside && (hit(L0 && L0.exit) || (player.y >= h - m - 2*uiScale() && px >= 41 && px <= 59))) toggleHome(false);
       }
     }
 
@@ -3868,10 +3961,10 @@ const ILLUSTRATED_BG_DATA = {
     ctx.drawImage(getScene(w, h, S, loc), 0, 0, w, h);      // 장소마다 다른 바닥·길·소품
     if(loc.id === "road" && !state.homeInside && !state.jackpotRoom){
       // 기존 화재 도로 미니게임의 차량 이미지 에셋을 emoDraw로 재사용한다.
-      const roadCar=(x,y,icon,flip,fontSize=42)=>{
+      const roadCar=(x,y,icon,flip,fontSize=42,vi)=>{
         ctx.save(); ctx.translate(x,y); if(flip) ctx.scale(-1,1);
         ctx.fillStyle="rgba(0,0,0,.18)"; ctx.beginPath(); ctx.ellipse(0,15*S,27*S,5*S,0,0,Math.PI*2); ctx.fill();
-        const myoCar = assetImg(icon === "🚗" ? "sprite_car_red" : "sprite_car_blue");
+        const myoCar = (vi != null ? carSprite(vi) : null) || assetImg(icon === "🚗" ? "sprite_car_red" : "sprite_car_blue");
         if(myoCar){ ctx.drawImage(myoCar, -31*S, -14*S, 62*S, 30*S); }
         else {
           ctx.font=(fontSize*S)+"px sans-serif"; ctx.textAlign="center"; ctx.textBaseline="middle";
@@ -3881,7 +3974,7 @@ const ILLUSTRATED_BG_DATA = {
         ctx.restore();
       };
       // 실제 주행 차량만 차선 위치에 그리며, 충돌 판정과 같은 좌표를 사용한다.
-      roadTrafficPositions(w,h,S,performance.now()).forEach(c=>roadCar(c.x,c.y,c.icon,c.dir<0,42));
+      roadTrafficPositions(w,h,S,performance.now()).forEach(c=>roadCar(c.x,c.y,c.icon,c.dir<0,42,c.vi));
     }
     if(state.fireEvent && state.fireEvent.step === 1 && state.adopted && state.currentLoc === "home" && !state.homeInside && !state.fireSearch) drawHomeFire(ctx, w, h, S);   // 불 붙은 집
     if(state.jackpotRoom) drawJackpotFx(ctx, w, h, S);
@@ -3980,19 +4073,25 @@ const ILLUSTRATED_BG_DATA = {
         ctx.font = (26*S) + "px sans-serif";
       }
       const concealed = !!(o.hiddenUnder && !o.hiddenRevealed && !hasSkill("whisker"));
-      if(concealed && o.hiddenUnder === "leaves"){
-        // 가을 낙엽 더미가 덫/츄르를 덮는다.
-        ctx.fillStyle = "rgba(82,49,28,0.18)"; ctx.beginPath(); ctx.ellipse(o.x, o.y+6*S, 23*S, 8*S, 0, 0, Math.PI*2); ctx.fill();
-        ctx.font = (22*S) + "px sans-serif";
-        emoDraw(ctx, "🍂", o.x-10*S, o.y+3*S); emoDraw(ctx, "🍁", o.x+9*S, o.y-3*S); emoDraw(ctx, "🍂", o.x+1*S, o.y-12*S);
-      } else if(concealed && o.hiddenUnder === "snow"){
-        // 겨울에는 둥근 눈더미가 덫/츄르의 윤곽을 완전히 가린다.
-        ctx.fillStyle = "rgba(89,125,157,0.22)"; ctx.beginPath(); ctx.ellipse(o.x, o.y+7*S, 25*S, 8*S, 0, 0, Math.PI*2); ctx.fill();
-        const sg = ctx.createLinearGradient(o.x, o.y-15*S, o.x, o.y+12*S);
-        sg.addColorStop(0, "rgba(255,255,255,0.98)"); sg.addColorStop(1, "rgba(203,225,242,0.96)");
-        ctx.fillStyle = sg; ctx.beginPath(); ctx.ellipse(o.x, o.y, 24*S, 15*S, 0, 0, Math.PI*2); ctx.fill();
-        ctx.fillStyle = "rgba(255,255,255,0.9)"; ctx.beginPath(); ctx.ellipse(o.x-8*S, o.y-8*S, 8*S, 5*S, -0.25, 0, Math.PI*2); ctx.fill();
-        ctx.font = (10*S) + "px sans-serif"; emoDraw(ctx, "❄️", o.x+15*S, o.y-10*S);
+      // 낙엽 더미 / 눈더미: a=1이면 물건을 완전히 가리고, 수염 센서가 있으면 반투명하게 덮어 "밑에 뭔가 있다"는 걸 보여 준다.
+      const drawCover = (kind, a)=>{
+        ctx.save(); ctx.globalAlpha = a;
+        if(kind === "leaves"){
+          ctx.fillStyle = "rgba(82,49,28,0.18)"; ctx.beginPath(); ctx.ellipse(o.x, o.y+6*S, 23*S, 8*S, 0, 0, Math.PI*2); ctx.fill();
+          ctx.font = (22*S) + "px sans-serif";
+          emoDraw(ctx, "🍂", o.x-10*S, o.y+3*S); emoDraw(ctx, "🍁", o.x+9*S, o.y-3*S); emoDraw(ctx, "🍂", o.x+1*S, o.y-12*S);
+        } else {
+          ctx.fillStyle = "rgba(89,125,157,0.22)"; ctx.beginPath(); ctx.ellipse(o.x, o.y+7*S, 25*S, 8*S, 0, 0, Math.PI*2); ctx.fill();
+          const sg = ctx.createLinearGradient(o.x, o.y-15*S, o.x, o.y+12*S);
+          sg.addColorStop(0, "rgba(255,255,255,0.98)"); sg.addColorStop(1, "rgba(203,225,242,0.96)");
+          ctx.fillStyle = sg; ctx.beginPath(); ctx.ellipse(o.x, o.y, 24*S, 15*S, 0, 0, Math.PI*2); ctx.fill();
+          ctx.fillStyle = "rgba(255,255,255,0.9)"; ctx.beginPath(); ctx.ellipse(o.x-8*S, o.y-8*S, 8*S, 5*S, -0.25, 0, Math.PI*2); ctx.fill();
+          ctx.font = (10*S) + "px sans-serif"; emoDraw(ctx, "❄️", o.x+15*S, o.y-10*S);
+        }
+        ctx.restore();
+      };
+      if(concealed){
+        drawCover(o.hiddenUnder, 1);
       } else {
         const _crackImg = o.item.key === "secret" ? assetImg("obj_crack") : null;
         if(_crackImg){ const cs = 46*S, _gp = 0.5 + 0.5*Math.sin(performance.now()/380); ctx.globalAlpha = 0.82 + 0.18*_gp; ctx.drawImage(_crackImg, o.x - cs/2, o.y - cs/2, cs, cs); ctx.globalAlpha = 1; }
@@ -4016,6 +4115,7 @@ const ILLUSTRATED_BG_DATA = {
           emoDraw(ctx, iconFor(o.item), o.x + (o.shake || 0), o.y);
         }
       }
+      if(o.hiddenUnder && hasSkill("whisker") && Math.hypot(player.x - o.x, player.y - o.y) >= 54*S) drawCover(o.hiddenUnder, 0.62);   // 수염 센서: 낙엽/눈 밑의 물건이 비쳐 보인다 (불투명도 62%)
       if(o.item.steal){   // 가판대 먹거리: 훔칠 수 있다는 신호로 반짝인다
         const pl = 0.5 + 0.5*Math.sin(performance.now()/240);
         ctx.font = (13*S) + "px sans-serif"; emoDraw(ctx, "\u2728", o.x + 16*S, o.y - 16*S - pl*3*S);
@@ -4027,8 +4127,20 @@ const ILLUSTRATED_BG_DATA = {
       if(o.guard){
         const g = o.guard, pop = Math.min(1, g.t/8);
         ctx.fillStyle = "rgba(0,0,0,0.12)"; ctx.beginPath(); ctx.ellipse(g.x, g.y + 16*S, 14*S*pop, 5*S*pop, 0, 0, Math.PI*2); ctx.fill();
-        ctx.font = (30*S*(0.6 + 0.4*pop)) + "px sans-serif";
-        emoDraw(ctx, "\uD83D\uDE3C", g.x, g.y + (g.blocked ? 0 : -Math.abs(Math.sin(g.t*0.5))*4*S));
+        // 예전 단색 😼 이모지를 지우고 갈색·주황·회색 신하 스프라이트를 쓴다.
+        const guardCatKeys = ["sprite_follower_c", "sprite_follower_b", "sprite_follower_a"];
+        const guardImg = assetImg(guardCatKeys[(g.variant || 0) % guardCatKeys.length]);
+        const guardBob = g.blocked ? 0 : -Math.abs(Math.sin(g.t*0.5))*4*S;
+        if(guardImg){
+          const gw = 37*S*pop, gh = gw*guardImg.naturalHeight/guardImg.naturalWidth;
+          ctx.save(); ctx.translate(g.x, g.y + guardBob);
+          if(player.x < g.x) ctx.scale(-1,1);
+          ctx.drawImage(guardImg,-gw/2,-gh*0.65,gw,gh);
+          ctx.restore();
+        } else {
+          ctx.font = (30*S*(0.6 + 0.4*pop)) + "px sans-serif";
+          emoDraw(ctx, "\uD83D\uDE3C", g.x, g.y + guardBob);
+        }
         if(!g.blocked){ ctx.globalAlpha = 0.7; ctx.font = (16*S) + "px sans-serif"; emoDraw(ctx, "\uD83E\uDEA8", g.x - 14*S, g.y + 12*S); ctx.globalAlpha = 1; }
       }
       if(hasSkill("whisker") && o.item.bad && !(o.fleeT > 0)){   // 수염 센서: 위험한 것 둘레의 붉은 경고
@@ -4067,8 +4179,8 @@ const ILLUSTRATED_BG_DATA = {
     drawStranger(ctx, S);
 
     ctx.save();
-    ctx.translate(player.x, player.y);
-    ctx.scale(catScale, catScale);
+    { const so = startleOffset(S); ctx.translate(player.x + so.x, player.y + so.y); }
+    ctx.scale(catScale*PLAYER_SIZE, catScale*PLAYER_SIZE);
     if(catGray) ctx.filter = "grayscale(0.4)";
     ctx.font = (30*S) + "px sans-serif";
     ctx.textAlign = "center"; ctx.textBaseline = "middle";
@@ -4082,7 +4194,7 @@ const ILLUSTRATED_BG_DATA = {
     }
     else {
       ctx.save();  // 주인공 표정/보행 전용 레이어 (부모 transform 유지)
-      const walking = !!player._walking && !state.napping;
+      const walking = !!player._walking && !state.napping && !state._endSleep;
       const rank = Math.max(0, Math.min(3, state.turfRank || 0));
       const lookRight = player.face >= 0;
       const rankFace = ["🐱","😏","😼","😐"][rank];
@@ -4090,7 +4202,7 @@ const ILLUSTRATED_BG_DATA = {
       const recentMood = catMoodFace && performance.now() < catMoodUntil;
       const shownFace = (rank > 0 && catFace === "😻" && !recentMood) ? rankFace : catFace;
       let spriteName;
-      if(state.napping) spriteName = "pose_sleep";
+      if(state.napping || state._endSleep) spriteName = "pose_sleep";
       else if(walking) spriteName = (lookRight ? "player_walk_" : "player_left_") + (Math.floor(performance.now()/142)%4);
       else spriteName = "face_" + v36EmotionName(shownFace);
       const newSprite = v36CatReady(spriteName);
@@ -4128,7 +4240,7 @@ const ILLUSTRATED_BG_DATA = {
       else if(t >= 0){
         const pop = t < 0.18 ? (0.4 + 0.9*(t/0.18)) : (t < 0.3 ? (1.3 - 0.3*((t-0.18)/0.12)) : 1);
         const a = t > 0.7 ? Math.max(0, 1 - (t-0.7)/0.3) : 1;
-        const hx = player.x, hy = player.y - (30*catScale + 14 + 10*Math.min(1, t/0.4))*S;
+        const hx = player.x, hy = player.y - (30*catScale*PLAYER_SIZE + 14 + 10*Math.min(1, t/0.4))*S;
         ctx.save(); ctx.globalAlpha = a; ctx.translate(hx, hy); ctx.scale(pop, pop);
         ctx.beginPath(); ctx.arc(0, 0, 19*S, 0, Math.PI*2); ctx.fillStyle = "rgba(255,255,255,.92)"; ctx.fill();
         ctx.lineWidth = 2*S; ctx.strokeStyle = "rgba(255,184,92,.95)"; ctx.stroke();
@@ -4170,7 +4282,12 @@ const ILLUSTRATED_BG_DATA = {
                  sp: Math.max(3.2*S, dist/(packLike ? 170 : 150)), ux: fromLeft ? 1 : -1, uy:0, fromLeft, dust:[], dustT:0,
                  pack: packLike ? PACK_SLOTS.map((slot,i)=> ({ back:slot.back, side:slot.side, face:PACK_FACES[i], ph:i*1.3,
                      imageId: ["__follower_a__", "__follower_b__", "__follower_c__", "__follower_b__", "__follower_a__"][i] })) : null };
-    if(packLike) sfx("alertBoss");
+    if(packLike){
+      sfx("alertBoss");
+      state._startle = performance.now();                                   // 깜짝 놀라 폴짝 뛰고 부들부들 떤다
+      setCatMood("\uD83D\uDE31", 4800);                                    // 놀란 얼굴
+      catSay(kingBoss ? "저, 저건… 왕?!" : "헉! 대장냥이다…!", 2000);
+    }
     if(!packLike) showToast("😾 낯선 고양이가 이쪽으로 다가온다…");
   }
   function packPos(c, S, spread){
@@ -4181,6 +4298,7 @@ const ILLUSTRATED_BG_DATA = {
     if(!stranger) return;
     if(state.gameOver){ stranger = null; return; }
     const S = uiScale();
+    if(stranger.stage !== "wait" && Math.abs(stranger.x - player.x) > 2) player.face = stranger.x > player.x ? 1 : -1;   // 다가오는 고양이 쪽을 바라본다
     if(stranger.stage === "alert"){                // "!" 가 먼저 뜨고, 잠시 뒤 무리가 모습을 드러낸다
       if(++stranger.t >= 48){ stranger.stage = "walk"; stranger.t = 0; sfx("packRush"); showToast("😼 고양이 무리가 먼지를 일으키며 몰려온다…"); }
       return;
@@ -4872,7 +4990,7 @@ const ILLUSTRATED_BG_DATA = {
     gacha.className = "gacha";
     gEl("gacha-flavor").className = "gacha-flavor"; gEl("gacha-flavor").textContent = "";
     gEl("gacha-confirm").hidden = true; gEl("gacha-leave").hidden = true;
-    gEl("gacha-title").textContent = "🧱 비밀 아지트";
+    gEl("gacha-title").textContent = "비밀 아지트";
     gEl("gacha-sub").textContent = "받침대 위에 무언가 반짝이는 게 세 개 있다…";
     { const bg = gacha.querySelector(".gacha-bg");
       if(bg){ if(ASSET_IMG.secret_room){ bg.classList.add("img"); bg.style.setProperty("background-image", "url(" + ASSET_IMG.secret_room + ")", "important"); } else { bg.classList.remove("img"); bg.style.removeProperty("background-image"); } } }
@@ -5781,8 +5899,16 @@ const ILLUSTRATED_BG_DATA = {
       if(!state.gameOver){ catSay("퍼뜩!"); checkForcedAction(); }
     }, OLD_NAP.ms);
   }
+  function startleOffset(S){   // 깜짝 놀람: 처음 0.42초는 폴짝, 이후 1.5초까지 점점 잦아드는 떨림
+    const st = state && state._startle; if(!st) return { x:0, y:0 };
+    const t = performance.now() - st;
+    if(t > 1500){ state._startle = 0; return { x:0, y:0 }; }
+    const y = t < 420 ? -Math.sin(Math.PI*t/420) * 16*S : 0;
+    const x = Math.sin(t/26) * 2.2*S * Math.max(0, 1 - t/1500);
+    return { x:x, y:y };
+  }
   function drawNapZzz(ctx, S){
-    if(!state || !state.napping) return;
+    if(!state || !(state.napping || state._endSleep)) return;
     const t = (performance.now() - (state._napT0 || 0)) / 1000;
     ctx.save(); ctx.textAlign = "center"; ctx.textBaseline = "middle";
     for(let i = 0; i < 3; i++){
@@ -5838,7 +5964,7 @@ const ILLUSTRATED_BG_DATA = {
       return;
     }
 
-    let msgToShow = (!state.adopted && item.msgUnadopted) ? item.msgUnadopted : item.msg;
+    let msgToShow = ((!state.adopted || (item.key === "treat" && state.currentLoc !== "home")) && item.msgUnadopted) ? item.msgUnadopted : item.msg;   // 길 위의 츄르는 집사가 챙겨준 게 아니다
     if(item.key === "feeder" && state.adopted && state.currentLoc === "home") msgToShow = "집사가 밥을 챙겨줬다";
     let twisted = false;
     if(item.bad && GAMBLE_TWISTS[item.key] && Math.random() < GAMBLE_TWISTS[item.key].chance){
@@ -5913,8 +6039,8 @@ const ILLUSTRATED_BG_DATA = {
       setTimeout(()=>{ if(state && state._paperPlayUntil) catSay("바스락! 팡팡!"); }, 650);
     }
     if(item.key === "cash"){
-      state.cashCount = (state.cashCount||0) + 1;
-      if(state.cashCount === 5 && !state.richCat){
+      if(state.adopted) state.cashCount = (state.cashCount||0) + 1;   // 지폐는 집사에게 물어다 줄 때만 센다 (집사가 없으면 부자냥이 씬이 나오지 않는다)
+      if(state.adopted && state.cashCount >= 5 && !state.richCat){
         state.richCat = true;
         holdEvents(1100);
         runWhenIdle(()=> playCutscene({ panels: CUT.rich }));
@@ -6091,7 +6217,7 @@ const ILLUSTRATED_BG_DATA = {
 
   const NEW_KITTEN_FLAVOR = {
     title:"새 친구가 생겼다",
-    desc:"주인이 조그만 새끼 고양이 한 마리를 집으로 데려왔다.\n\u201c너희 둘이 친구 하렴.\u201d",
+    desc:"집사가 조그만 새끼 고양이 한 마리를 집으로 데려왔다.\n\u201c너희 둘이 친구 하렴.\u201d",
     opts:[
       { label:"반갑게 맞이한다", sub:"곁을 내준다", eff:{affection:+10, fun:+10}, kitten:true },
       { label:"경계하며 거리를 둔다", sub:"아직 낯설다", eff:{fun:-4, risk:+2} },
@@ -6402,7 +6528,7 @@ const ILLUSTRATED_BG_DATA = {
     pushHistory({kind:"choice", flavor, opt}, before);
     if(state._affBlocked){
       state._affBlocked = false;
-      setTimeout(()=> showToast("🐾 아직 곁을 내줄 주인이 없어 애정도는 오르지 않았다"), 1100);
+      setTimeout(()=> showToast("🐾 아직 곁을 내줄 집사가 없어 애정도는 오르지 않았다"), 1100);
     }
     const _rsay = state._rankSay; state._rankSay = null;
     if(after.length){                 // 선택 결과 컷신은 대기열/이벤트 간격을 거치지 않고 즉시 표시
@@ -6492,7 +6618,7 @@ const ILLUSTRATED_BG_DATA = {
     if(noCross) g.lanes.forEach(l=>{
       const n = l.dense ? 3 : 2;
       for(let i=0;i<n;i++){
-        g.cars.push({ x:W*((i + 0.15 + Math.random()*0.7)/n), y:l.y, dir:l.dir, v:l.speed*(0.9 + Math.random()*0.45), cur:l.speed, w:60*S, icon:["🚗","🚙","🚕","🚚"][Math.floor(Math.random()*4)] });
+        g.cars.push({ vi:((g._cv = (g._cv||0) + 3) % 8), x:W*((i + 0.15 + Math.random()*0.7)/n), y:l.y, dir:l.dir, v:l.speed*(0.9 + Math.random()*0.45), cur:l.speed, w:60*S, icon:["🚗","🚙","🚕","🚚"][Math.floor(Math.random()*4)] });
       }
     });
     state.roadGame = g; box.classList.add("show");
@@ -6525,7 +6651,7 @@ const ILLUSTRATED_BG_DATA = {
       g.lanes.forEach(l=>{
         l.next--;
         if(l.next <= 0){
-          g.cars.push({ x:l.dir > 0 ? -40*S : W + 40*S, y:l.y, dir:l.dir, v:l.speed*(0.85 + Math.random()*0.5), cur:l.speed, w:60*S, icon:["🚗","🚙","🚕","🚚"][Math.floor(Math.random()*4)] });
+          g.cars.push({ vi:((g._cv = (g._cv||0) + 3) % 8), x:l.dir > 0 ? -40*S : W + 40*S, y:l.y, dir:l.dir, v:l.speed*(0.85 + Math.random()*0.5), cur:l.speed, w:60*S, icon:["🚗","🚙","🚕","🚚"][Math.floor(Math.random()*4)] });
           l.next = g.noCross ? (l.dense ? 38 + Math.random()*45 : 85 + Math.random()*80) : (l.dense ? 60 + Math.random()*70 : 170 + Math.random()*150);
         }
       });
@@ -6563,7 +6689,7 @@ const ILLUSTRATED_BG_DATA = {
     g.lanes.forEach(l=>{ if(l.next < 46 && g.t > 60){ emoDraw(ctx, "⚠️", l.dir > 0 ? 16*S : W - 16*S, l.y); } });
     g.cars.forEach(c=>{
       ctx.save(); ctx.translate(c.x, c.y);
-      const carIm = assetImg(c.icon === "🚙" || c.icon === "🚚" ? "sprite_car_blue" : "sprite_car_red");
+      const carIm = (c.vi != null ? carSprite(c.vi) : null) || assetImg(c.icon === "🚙" || c.icon === "🚚" ? "sprite_car_blue" : "sprite_car_red");
       if(carIm){ if(c.dir < 0) ctx.scale(-1, 1); ctx.drawImage(carIm, -c.w/2, -18*S, c.w, 36*S); }   // 실제 이미지 전면은 오른쪽. 방향과 이동 부호 일치.
       else { if(c.dir > 0) ctx.scale(-1, 1); ctx.font = (34*S) + "px sans-serif"; emoDraw(ctx, c.icon, 0, 0); }   // 이모지는 왼쪽을 본다
       ctx.restore();
@@ -6742,10 +6868,10 @@ const ILLUSTRATED_BG_DATA = {
       if(state.adopted){
         title = good ? "🏠 집 근처에 닿았다!" : "🏠 겨우 집 근처에 닿았다...";
         desc = good
-          ? "우여곡절 끝에 익숙한 골목이 보인다. 저 멀리서 주인이 애타게 부르는 소리가 들린다!"
+          ? "우여곡절 끝에 익숙한 골목이 보인다. 저 멀리서 집사가 애타게 부르는 소리가 들린다!"
           : "여기저기 헤매다 지칠 대로 지쳐, 겨우 익숙한 냄새가 나는 골목 어귀에 닿았다.";
         opts = [
-          { label:"주인에게 달려간다", sub:"", eff: good ? {affection:+14, fun:+6} : {affection:+4, hunger:-6}, finish:true },
+          { label:"집사에게 달려간다", sub:"", eff: good ? {affection:+14, fun:+6} : {affection:+4, hunger:-6}, finish:true },
         ];
       } else {
         title = good ? "📦 보금자리 근처에 닿았다!" : "📦 겨우 쉴 곳 근처에 닿았다...";
@@ -6946,7 +7072,7 @@ const ILLUSTRATED_BG_DATA = {
       return { key:"lovebirds", emoji:"😻💞", title:"잉꼬 부부", desc:"수줍은 첫 데이트부터 작은 사냥감, 큰 사냥감, 그리고 귀한 츄르까지. 서로에게 가장 좋은 것을 나누며 한평생을 함께했다. 골목의 고양이들은 둘을 '잉꼬 부부'라 불렀다." };
     }
     if(state.richCat){
-      return { key:"rich", emoji:"💰😺", title:"부자냥이", desc:"지폐를 부지런히 물어다 준 덕분에 주인이 큰 부자가 되었다. 이 고양이는 매일 최고급 츄르를 받아먹으며 호화롭게 살았다." };
+      return { key:"rich", emoji:"💰😺", title:"부자냥이", desc:"지폐를 부지런히 물어다 준 덕분에 집사가 큰 부자가 되었다. 이 고양이는 매일 최고급 츄르를 받아먹으며 호화롭게 살았다." };
     }
     if(state.turfRank >= 3){
       return { key:"turf_king", emoji:"⚔️👑", title:"고양이들의 왕", desc:"수많은 싸움 끝에 이 동네 모든 고양이 위에 군림하는 전설이 되었다." };
@@ -6971,10 +7097,10 @@ const ILLUSTRATED_BG_DATA = {
       return { key:"mama_warm", emoji:"🐈🍼", title:"새끼들의 든든한 엄마냥", desc:"새끼를 맡길 때도, 데리러 갈 때도 늘 제때였다. 새끼들은 엄마가 반드시 돌아온다는 걸 알았고, 그 믿음 속에서 건강하게 자라 골목 어디서든 엄마를 따라 졸졸 걸었다." };
     }
     if(aff >= 75 && w > 18){
-      return { key:"home_chubby", emoji:"🏠😻", title:"사랑받는 집고양이 (통통이)", desc:"주인의 사랑을 듬뿍 받으며 살이 오른 채 따뜻한 집에서 여생을 보냈다. 가끔 다이어트 잔소리를 듣지만 행복하다." };
+      return { key:"home_chubby", emoji:"🏠😻", title:"사랑받는 집고양이 (통통이)", desc:"집사의 사랑을 듬뿍 받으며 살이 오른 채 따뜻한 집에서 여생을 보냈다. 가끔 다이어트 잔소리를 듣지만 행복하다." };
     }
     if(aff >= 65){
-      return { key:"home_affectionate", emoji:"🏠🐈", title:"주인에게 애교떠는 집고양이", desc:"매일 현관에서 반갑게 마중 나오는, 동네에서 가장 다정한 고양이로 소문났다." };
+      return { key:"home_affectionate", emoji:"🏠🐈", title:"집사에게 애교떠는 집고양이", desc:"매일 현관에서 반갑게 마중 나오는, 동네에서 가장 다정한 고양이로 소문났다." };
     }
     if(state.gangApproved === false){
       return { key:"exiled", emoji:"☁️🐈‍⬛", title:"동네에서 쫓겨난 떠돌이", desc:"끝내 대장냥이의 허락을 받지 못해, 이 동네 저 동네를 떠돌며 살았다. 텃세는 매서웠지만 이 고양이는 혼자서도 꿋꿋했다." };
@@ -7058,6 +7184,7 @@ const ILLUSTRATED_BG_DATA = {
     if(blink && _lids && _calm){
       // 수명을 다한 엔딩: 눈을 두 번 깜빡이다 천천히 감긴다 (화면을 누르면 건너뛴다)
       setCatMood("\uD83D\uDE34", BLINK_END.total + 1200);
+      state._endSleep = true; state._napT0 = performance.now(); player._walking = false;   // 눈을 감는 동안 주인공은 누워 자는 모습
       _lids.classList.remove("play"); void _lids.offsetWidth; _lids.classList.add("on", "play");
       let done = false;
       const finish = ()=>{
@@ -7857,6 +7984,8 @@ const ILLUSTRATED_BG_DATA = {
   homeTitle.addEventListener("click", goHome);
   homeTitle.addEventListener("keydown", e=>{ if(e.key === "Enter"){ e.preventDefault(); goHome(); } });
   startBtn.addEventListener("click", startGame);
+
+  restartBtn.addEventListener("click", startGame);
   /* ================= 🛠 이벤트 룸 (개발자용) =================
      이 파일(myojeok_eventroom.html)에만 들어 있는 점검용 패널이다. 배포용 myojeok 파일에는 들어 있지 않다.
      열기/닫기: 왼쪽 아래 🛠 버튼 또는 ` (백틱) 키.  모든 이벤트·컷신·미니게임·엔딩을 한 번에 골라서 실행할 수 있다. */
@@ -8059,8 +8188,6 @@ const ILLUSTRATED_BG_DATA = {
     }
     build();
   })();
-
-  restartBtn.addEventListener("click", startGame);
 
   /* ================= 배경 음악: 음악 파일 없이 Web Audio로 장소마다 다른 분위기를 실시간 합성 ================= */
   const Music = (function(){
