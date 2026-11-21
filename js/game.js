@@ -103,9 +103,9 @@ window.addEventListener("DOMContentLoaded", function(){
     { key:"catgrass", icon:"🌿", label:"강아지풀", tier:"common", hunger:0, fun:+8, affection:0, weight:-1, risk:-1, exercise:true, msg:"강아지풀을 살랑살랑 흔들며 놀았다" , places:["park","lot","housing"] },
     { key:"trap",     icon:"🪤", label:"쥐덫", tier:"rare", hunger:0, fun:+10, affection:0, weight:0, risk:+18, bad:true, msg:"쥐덫 근처에서 깜짝 놀랐다! 심장이 쫄깃했다" , places:["lot","road","stream","park","housing"] },
     { key:"dog",      icon:"🐕", label:"사나운 개", tier:"rare", hunger:-6, fun:+8, affection:0, weight:-2, risk:+16, bad:true, exercise:true, msg:"사나운 개가 짖으며 쫓아와 정신없이 도망쳤다!" , places:["road","park"] },
-    { key:"bug",      icon:"🦗", label:"벌레", tier:"uncommon", hunger:0, fun:+15, affection:+12, weight:-2, risk:-1, exercise:true, msg:"벌레를 사냥해 주인에게 자랑스럽게 물어다 줬다", msgUnadopted:"벌레를 사냥했다. 아직 물어다 줄 주인은 없다" , places:["lot","park","stream"] },
-    { key:"bird",     icon:"🐦", label:"참새", tier:"rare", hunger:0, fun:+30, affection:+22, weight:-3, risk:-1, exercise:true, msg:"참새를 사냥해 선물했다! 주인이 놀라며 좋아했다", msgUnadopted:"참새를 사냥했다. 자랑할 상대가 없어 조금 허전하다" , places:["park","stream"] },
-    { key:"cash",     icon:"💵", label:"지폐", tier:"rare", hunger:0, fun:0, affection:+20, weight:0, risk:-1, mystery:true, msg:"...정체는 지폐였다! 주인이 어이없어하면서도 사랑스러워한다", msgUnadopted:"...정체는 지폐였다. 아직 주인이 없어 그냥 물고 다닐 뿐이다" , places:["market_st","market","alley"] },
+    { key:"bug",      icon:"🦗", label:"벌레", tier:"uncommon", hunger:0, fun:+15, affection:+12, weight:-2, risk:-1, exercise:true, msg:"벌레를 사냥해 집사에게 자랑스럽게 물어다 줬다", msgUnadopted:"벌레를 사냥했다. 아직 물어다 줄 집사는 없다" , places:["lot","park","stream"] },
+    { key:"bird",     icon:"🐦", label:"참새", tier:"rare", hunger:0, fun:+30, affection:+22, weight:-3, risk:-1, exercise:true, msg:"참새를 사냥해 선물했다! 집사가 놀라며 좋아했다", msgUnadopted:"참새를 사냥했다. 자랑할 상대가 없어 조금 허전하다" , places:["park","stream"] },
+    { key:"cash",     icon:"💵", label:"지폐", tier:"rare", hunger:0, fun:0, affection:+20, weight:0, risk:-1, mystery:true, msg:"...정체는 지폐였다! 집사가 어이없어하면서도 사랑스러워한다", msgUnadopted:"...정체는 지폐였다. 아직 집사가 없어 그냥 물고 다닐 뿐이다" , places:["market_st","market","alley"] },
     { key:"paper",    icon:"📄", label:"폐지", tier:"common", hunger:0, fun:+14, affection:+6, weight:0, risk:0, mystery:true, paperPlay:true, msg:"...정체는 폐지였다! 바스락거리는 종이를 앞발로 툭툭 치며 한참을 놀았다", msgUnadopted:"...정체는 폐지였다! 쓸모는 없어도 바스락거리는 소리가 재미있다" , places:["alley","market_st","road","home"] },
     { key:"pushy",    icon:"🧍", label:"들이대는 사람", tier:"uncommon", hunger:0, fun:+6, affection:0, weight:0, risk:+4, bad:true, msg:"낯선 사람이 억지로 만지려 해서 잔뜩 스트레스를 받았다" , places:["market","playground","market_st","housing"] },
     { key:"kiss",     icon:"😘", label:"뽀뽀하려는 사람", tier:"uncommon", hunger:0, fun:+5, affection:0, weight:0, risk:+7, bad:true, msg:"낯선 사람이 갑자기 뽀뽀하려고 해서 화들짝 놀라 도망쳤다" , places:["market","playground","housing"] },
@@ -116,7 +116,7 @@ window.addEventListener("DOMContentLoaded", function(){
     { key:"clean",    icon:"🌺", label:"깨끗한 골목", tier:"uncommon", hunger:0, fun:+2, affection:0, weight:0, risk:-3, msg:"화사하고 깨끗한 골목을 지나갔다" , places:["alley","housing"] },
     { key:"empty",    icon:"🍃", label:"조용한 길", tier:"common", hunger:0, fun:0, affection:0, weight:0, risk:0, msg:"별일 없이 지나갔다" , places:["any"] },
   ];
-  const TREAT_ITEM = { key:"treat", icon:"🍬", label:"고급 츄르", tier:"special", food:true, hunger:+30, fun:+10, affection:+6, weight:+2, risk:-2, msg:"주인이 챙겨준 고급 츄르를 냠냠 먹었다" };
+  const TREAT_ITEM = { key:"treat", icon:"🍬", label:"고급 츄르", tier:"special", food:true, hunger:+30, fun:+10, affection:+6, weight:+2, risk:-2, msgUnadopted:"길에서 주운 고급 츄르를 냠냠 먹었다", msg:"집사가 챙겨준 고급 츄르를 냠냠 먹었다" };
 
   /* ---------- 연인 퀘스트: 하트 아이콘이 4단계로 바뀐다 ----------
      0 🤍 만남 → (첫 데이트) → 1 🩷 → (작은 사냥감) → 2 ❤️ → (큰 사냥감) → 3 💖 → (츄르) → 4 💞 잉꼬 부부 */
@@ -224,7 +224,7 @@ window.addEventListener("DOMContentLoaded", function(){
     { key:"rich", emoji:"💰😺", title:"부자냥이", hint:"지폐를 부지런히 물어다 준 결과" },
     { key:"turf_king", emoji:"⚔️👑", title:"고양이들의 왕", hint:"동네 서열의 정점에 서다" },
     { key:"home_chubby", emoji:"🏠😻", title:"사랑받는 집고양이 (통통이)", hint:"살이 오른 채 사랑받은 삶" },
-    { key:"home_affectionate", emoji:"🏠🐈", title:"주인에게 애교떠는 집고양이", hint:"애정도 최고" },
+    { key:"home_affectionate", emoji:"🏠🐈", title:"집사에게 애교떠는 집고양이", hint:"애정도 최고" },
     { key:"wanderer_rough", emoji:"🌧️🐾", title:"거친 길 위의 방랑묘", hint:"위험 속에서도 자유롭게" },
     { key:"muscle_legend", emoji:"💪🐈‍⬛", title:"전설의 근육냥이", hint:"운동과 사냥의 결실" },
     { key:"chubby_famous", emoji:"🐽🐱", title:"동네 유명 통통이", hint:"먹는 것을 너무 사랑한 결과" },
@@ -786,7 +786,7 @@ window.addEventListener("DOMContentLoaded", function(){
       { img: CUT_IMG.lovebirds3, text:"골목의 고양이들이 둘을 올려다보며 수군거린다.\n“…저 둘, 정말 잉꼬 부부 같아.”" },
     ],
     rich: [
-      { img: CUT_IMG.rich, text:"물어다 준 종이 뭉치가 어느새 한가득.\n주인의 표정이 달라졌다.\n\n오늘부터 간식의 등급이 올라간다." },
+      { img: CUT_IMG.rich, text:"물어다 준 종이 뭉치가 어느새 한가득.\n집사의 표정이 달라졌다.\n\n오늘부터 간식의 등급이 올라간다." },
     ],
     kitten: [
       { img: CUT_IMG.kitten, text:"작고 따뜻한 것들이 배에 파고든다.\n\n이제 이 고양이는 혼자가 아니다." },
@@ -1461,6 +1461,7 @@ window.addEventListener("DOMContentLoaded", function(){
     // 생후 10턴: 독립 예고만 등록한다. 컷씬을 보기 전에 새끼가 갑자기 사라지지 않게 한다.
     const grown = state.kittens.filter(k=> k.mode !== "lost" && k.mode !== "flee"
       && k.mode !== "sit"   // 연인에게 맡겨 둔 새끼는 데려온 뒤에 독립한다 (맡긴 새끼가 엄마를 기다리다 사라지지 않게)
+      && k.wish && k.wish.done   // 소원을 이뤄 주기 전에는 독립하지 않는다
       && !k._independenceQueued && (state.kittenTurnCount-k.bornTurn)>=10);
     if(grown.length){
       grown.forEach(k=>{ k._independenceQueued = true; }); // 다음 턴이 와도 중복 예약 방지
@@ -1469,7 +1470,7 @@ window.addEventListener("DOMContentLoaded", function(){
         if(state !== familyState || state.gameOver) return; // 새 게임이나 엔딩으로 전환된 경우 무시
         const departing = grown.filter(k=> state.kittens.includes(k));
         if(!departing.length) return;
-        playCutscene({ panels:CUT.kittenIndependence }, ()=>{
+        const leave = ()=>{
           if(state !== familyState || state.gameOver) return;
           // 컷씬을 직접 닫은 뒤에만 동행/맡김 목록에서 독립한 새끼를 제거한다.
           const present = departing.filter(k=>state.kittens.includes(k));
@@ -1478,7 +1479,11 @@ window.addEventListener("DOMContentLoaded", function(){
           showToast("🌸 " + present.length + "마리의 새끼 고양이가 씩씩하게 독립했다!");
           renderKittenHud();
           renderAll();
-        });
+        };
+        // 새끼가 모두 독립하는 순간에만 이별 컷씬을 보여 준다 (아직 곁에 남는 새끼가 있으면 조용히 떠난다)
+        const stay = state.kittens.filter(k=> !departing.includes(k));
+        if(stay.length) leave();
+        else playCutscene({ panels:CUT.kittenIndependence }, leave);
       });
     }
     const gone = state.kittens.filter(k=> k.mode === "lost" && state.day - k.lostDay >= KITTEN_CFG.lostDays);
@@ -2440,7 +2445,7 @@ window.addEventListener("DOMContentLoaded", function(){
     dog:   { risk:8, speed:0.6,  icon:"🐕", hit:"개에게 물렸다!",               miss:"개가 달려들었지만 간신히 피했다!",  label:"개에게 물림", msg:"쫓아온 개에게 물렸다" },
     pushy: { risk:3, speed:0.52, icon:"🧍", hit:"들이대는 사람에게 붙잡혔다!", miss:"뻗어오는 손길을 간신히 피했다!",    label:"붙잡힘",     msg:"쫓아온 사람에게 붙잡혀 발버둥쳤다" },
     kiss:  { risk:3, speed:0.52, icon:"😘", hit:"뽀뽀 세례를 받았다!",         miss:"날아오는 뽀뽀를 간신히 피했다!",    label:"뽀뽀 세례",  msg:"쫓아온 사람의 뽀뽀를 피하느라 진땀을 뺐다" },
-    owner: { speed:0.74, icon:"👵", hit:"할머니에게 붙잡혔다!", miss:"할머니의 손을 간신히 피했다!", label:"주인에게 붙잡힘", msg:"가판대 주인에게 붙잡혔다" },
+    owner: { speed:0.74, icon:"👵", hit:"할머니에게 붙잡혔다!", miss:"할머니의 손을 간신히 피했다!", label:"집사에게 붙잡힘", msg:"가판대 집사에게 붙잡혔다" },
   };
   let chaseCooldown = 0;
   let onTrap = false;
@@ -2564,7 +2569,7 @@ window.addEventListener("DOMContentLoaded", function(){
   }
 
   /* ================= 도둑고양이: 시장 가판대 먹거리 훔치기 =================
-     가판대 먹거리를 물고 튀면 주인 할머니가 뒤쫓아 온다.
+     가판대 먹거리를 물고 튀면 집사 할머니가 뒤쫓아 온다.
      지도(방) THEFT_CFG.rooms 개를 붙잡히지 않고 지나가면 성공, 붙잡히면 먹거리를 빼앗기고 꿀밤. */
   const THEFT_CFG = { endWins:3, endFails:3, rooms:3, hunger:20, fun:20, weight:1, risk:4, failHunger:-10, failFun:-8, failRisk:8, minDay:3 };
   const OWNER_ITEM = { key:"owner", icon:"👵", label:"시장 할머니", tier:"special", bad:true, msg:"" };
@@ -2587,7 +2592,7 @@ window.addEventListener("DOMContentLoaded", function(){
     setTimeout(()=>{ if(state.theft) showToast("🏃 지도 " + THEFT_CFG.rooms + "개를 붙잡히지 않고 지나가면 성공!"); }, 2200);
     renderTheftHud();
   }
-  // 새 방에 들어올 때: 성공 판정 또는 주인이 문 뒤에서 쫓아 들어온다
+  // 새 방에 들어올 때: 성공 판정 또는 집사가 문 뒤에서 쫓아 들어온다
   function theftOnEnter(fromDir){
     const T = state.theft;
     if(!T || !fromDir || state.fireSearch) return;
@@ -2638,7 +2643,7 @@ window.addEventListener("DOMContentLoaded", function(){
     const msg = "👵 붙잡혔다! 먹거리를 빼앗기고 꿀밤까지 맞았다…";
     state._lastMsg = msg; showToast(msg);
     showDeltas(before);
-    pushHistory({ kind:"item", item:{ icon:"👵", label:"주인에게 붙잡힘", bad:true }, msg:msg }, before);
+    pushHistory({ kind:"item", item:{ icon:"👵", label:"집사에게 붙잡힘", bad:true }, msg:msg }, before);
     renderTheftHud(); renderAll();
     checkForcedAction();
   }
@@ -2744,6 +2749,8 @@ window.addEventListener("DOMContentLoaded", function(){
       const r = 9 * u;
       cat.x = Math.max(r, Math.min(N-r, cat.x + dx*sp*dt));
       cat.y = Math.max(r, Math.min(N-r, cat.y + dy*sp*dt));
+      cat.moving = len > 0.08; if(cat.moving) cat.wt = (cat.wt||0) + dt;
+      if(dx < -0.2) cat.face = -1; else if(dx > 0.2) cat.face = 1;
       if(invuln > 0) invuln -= dt; if(shake > 0) shake -= dt;
       if(msgT > 0){ msgT -= dt; if(msgT <= 0) msgEl.classList.remove("on"); }
 
@@ -2822,8 +2829,9 @@ window.addEventListener("DOMContentLoaded", function(){
       ctx.save();
       if(invuln > 0 && Math.floor(invuln*12)%2 === 0) ctx.globalAlpha = 0.45;
       ctx.font = (30*u) + "px sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
-      const beeCat=v36CatReady(invuln>0.7 ? "face_sad" : "face_default");
-      if(beeCat){ctx.save();ctx.translate(cat.x*dpr,cat.y*dpr);drawMyoSprite(ctx,beeCat,36*u,31*u,16*u);ctx.restore();}
+      const beeRight = (cat.face||1) > 0, beeWalk = !!cat.moving && invuln <= 0.7;
+      const beeCat=v36CatReady(invuln>0.7 ? "face_sad" : (beeWalk ? (beeRight ? "player_walk_" : "player_left_") + (Math.floor((cat.wt||0)*7)%4) : "face_default"));
+      if(beeCat){ctx.save();ctx.translate(cat.x*dpr,cat.y*dpr);if(!beeWalk && beeRight)ctx.scale(-1,1);drawMyoSprite(ctx,beeCat,36*u,31*u,16*u);ctx.restore();}
       else emoDraw(ctx,invuln>0.7 ? "😿" : catFaceNow(),cat.x*dpr,cat.y*dpr);
       ctx.restore();
     }
@@ -4107,7 +4115,7 @@ const ILLUSTRATED_BG_DATA = {
           emoDraw(ctx, iconFor(o.item), o.x + (o.shake || 0), o.y);
         }
       }
-      if(o._sensedKind) drawCover(o._sensedKind, 0.62);   // 수염 센서: 낙엽/눈 밑의 물건이 비쳐 보인다 (불투명도 62%)
+      if(o.hiddenUnder && hasSkill("whisker") && Math.hypot(player.x - o.x, player.y - o.y) >= 54*S) drawCover(o.hiddenUnder, 0.62);   // 수염 센서: 낙엽/눈 밑의 물건이 비쳐 보인다 (불투명도 62%)
       if(o.item.steal){   // 가판대 먹거리: 훔칠 수 있다는 신호로 반짝인다
         const pl = 0.5 + 0.5*Math.sin(performance.now()/240);
         ctx.font = (13*S) + "px sans-serif"; emoDraw(ctx, "\u2728", o.x + 16*S, o.y - 16*S - pl*3*S);
@@ -4290,6 +4298,7 @@ const ILLUSTRATED_BG_DATA = {
     if(!stranger) return;
     if(state.gameOver){ stranger = null; return; }
     const S = uiScale();
+    if(stranger.stage !== "wait" && Math.abs(stranger.x - player.x) > 2) player.face = stranger.x > player.x ? 1 : -1;   // 다가오는 고양이 쪽을 바라본다
     if(stranger.stage === "alert"){                // "!" 가 먼저 뜨고, 잠시 뒤 무리가 모습을 드러낸다
       if(++stranger.t >= 48){ stranger.stage = "walk"; stranger.t = 0; sfx("packRush"); showToast("😼 고양이 무리가 먼지를 일으키며 몰려온다…"); }
       return;
@@ -5955,7 +5964,7 @@ const ILLUSTRATED_BG_DATA = {
       return;
     }
 
-    let msgToShow = (!state.adopted && item.msgUnadopted) ? item.msgUnadopted : item.msg;
+    let msgToShow = ((!state.adopted || (item.key === "treat" && state.currentLoc !== "home")) && item.msgUnadopted) ? item.msgUnadopted : item.msg;   // 길 위의 츄르는 집사가 챙겨준 게 아니다
     if(item.key === "feeder" && state.adopted && state.currentLoc === "home") msgToShow = "집사가 밥을 챙겨줬다";
     let twisted = false;
     if(item.bad && GAMBLE_TWISTS[item.key] && Math.random() < GAMBLE_TWISTS[item.key].chance){
@@ -6030,8 +6039,8 @@ const ILLUSTRATED_BG_DATA = {
       setTimeout(()=>{ if(state && state._paperPlayUntil) catSay("바스락! 팡팡!"); }, 650);
     }
     if(item.key === "cash"){
-      state.cashCount = (state.cashCount||0) + 1;
-      if(state.cashCount === 5 && !state.richCat){
+      if(state.adopted) state.cashCount = (state.cashCount||0) + 1;   // 지폐는 집사에게 물어다 줄 때만 센다 (집사가 없으면 부자냥이 씬이 나오지 않는다)
+      if(state.adopted && state.cashCount >= 5 && !state.richCat){
         state.richCat = true;
         holdEvents(1100);
         runWhenIdle(()=> playCutscene({ panels: CUT.rich }));
@@ -6208,7 +6217,7 @@ const ILLUSTRATED_BG_DATA = {
 
   const NEW_KITTEN_FLAVOR = {
     title:"새 친구가 생겼다",
-    desc:"주인이 조그만 새끼 고양이 한 마리를 집으로 데려왔다.\n\u201c너희 둘이 친구 하렴.\u201d",
+    desc:"집사가 조그만 새끼 고양이 한 마리를 집으로 데려왔다.\n\u201c너희 둘이 친구 하렴.\u201d",
     opts:[
       { label:"반갑게 맞이한다", sub:"곁을 내준다", eff:{affection:+10, fun:+10}, kitten:true },
       { label:"경계하며 거리를 둔다", sub:"아직 낯설다", eff:{fun:-4, risk:+2} },
@@ -6519,7 +6528,7 @@ const ILLUSTRATED_BG_DATA = {
     pushHistory({kind:"choice", flavor, opt}, before);
     if(state._affBlocked){
       state._affBlocked = false;
-      setTimeout(()=> showToast("🐾 아직 곁을 내줄 주인이 없어 애정도는 오르지 않았다"), 1100);
+      setTimeout(()=> showToast("🐾 아직 곁을 내줄 집사가 없어 애정도는 오르지 않았다"), 1100);
     }
     const _rsay = state._rankSay; state._rankSay = null;
     if(after.length){                 // 선택 결과 컷신은 대기열/이벤트 간격을 거치지 않고 즉시 표시
@@ -6859,10 +6868,10 @@ const ILLUSTRATED_BG_DATA = {
       if(state.adopted){
         title = good ? "🏠 집 근처에 닿았다!" : "🏠 겨우 집 근처에 닿았다...";
         desc = good
-          ? "우여곡절 끝에 익숙한 골목이 보인다. 저 멀리서 주인이 애타게 부르는 소리가 들린다!"
+          ? "우여곡절 끝에 익숙한 골목이 보인다. 저 멀리서 집사가 애타게 부르는 소리가 들린다!"
           : "여기저기 헤매다 지칠 대로 지쳐, 겨우 익숙한 냄새가 나는 골목 어귀에 닿았다.";
         opts = [
-          { label:"주인에게 달려간다", sub:"", eff: good ? {affection:+14, fun:+6} : {affection:+4, hunger:-6}, finish:true },
+          { label:"집사에게 달려간다", sub:"", eff: good ? {affection:+14, fun:+6} : {affection:+4, hunger:-6}, finish:true },
         ];
       } else {
         title = good ? "📦 보금자리 근처에 닿았다!" : "📦 겨우 쉴 곳 근처에 닿았다...";
@@ -7063,7 +7072,7 @@ const ILLUSTRATED_BG_DATA = {
       return { key:"lovebirds", emoji:"😻💞", title:"잉꼬 부부", desc:"수줍은 첫 데이트부터 작은 사냥감, 큰 사냥감, 그리고 귀한 츄르까지. 서로에게 가장 좋은 것을 나누며 한평생을 함께했다. 골목의 고양이들은 둘을 '잉꼬 부부'라 불렀다." };
     }
     if(state.richCat){
-      return { key:"rich", emoji:"💰😺", title:"부자냥이", desc:"지폐를 부지런히 물어다 준 덕분에 주인이 큰 부자가 되었다. 이 고양이는 매일 최고급 츄르를 받아먹으며 호화롭게 살았다." };
+      return { key:"rich", emoji:"💰😺", title:"부자냥이", desc:"지폐를 부지런히 물어다 준 덕분에 집사가 큰 부자가 되었다. 이 고양이는 매일 최고급 츄르를 받아먹으며 호화롭게 살았다." };
     }
     if(state.turfRank >= 3){
       return { key:"turf_king", emoji:"⚔️👑", title:"고양이들의 왕", desc:"수많은 싸움 끝에 이 동네 모든 고양이 위에 군림하는 전설이 되었다." };
@@ -7088,10 +7097,10 @@ const ILLUSTRATED_BG_DATA = {
       return { key:"mama_warm", emoji:"🐈🍼", title:"새끼들의 든든한 엄마냥", desc:"새끼를 맡길 때도, 데리러 갈 때도 늘 제때였다. 새끼들은 엄마가 반드시 돌아온다는 걸 알았고, 그 믿음 속에서 건강하게 자라 골목 어디서든 엄마를 따라 졸졸 걸었다." };
     }
     if(aff >= 75 && w > 18){
-      return { key:"home_chubby", emoji:"🏠😻", title:"사랑받는 집고양이 (통통이)", desc:"주인의 사랑을 듬뿍 받으며 살이 오른 채 따뜻한 집에서 여생을 보냈다. 가끔 다이어트 잔소리를 듣지만 행복하다." };
+      return { key:"home_chubby", emoji:"🏠😻", title:"사랑받는 집고양이 (통통이)", desc:"집사의 사랑을 듬뿍 받으며 살이 오른 채 따뜻한 집에서 여생을 보냈다. 가끔 다이어트 잔소리를 듣지만 행복하다." };
     }
     if(aff >= 65){
-      return { key:"home_affectionate", emoji:"🏠🐈", title:"주인에게 애교떠는 집고양이", desc:"매일 현관에서 반갑게 마중 나오는, 동네에서 가장 다정한 고양이로 소문났다." };
+      return { key:"home_affectionate", emoji:"🏠🐈", title:"집사에게 애교떠는 집고양이", desc:"매일 현관에서 반갑게 마중 나오는, 동네에서 가장 다정한 고양이로 소문났다." };
     }
     if(state.gangApproved === false){
       return { key:"exiled", emoji:"☁️🐈‍⬛", title:"동네에서 쫓겨난 떠돌이", desc:"끝내 대장냥이의 허락을 받지 못해, 이 동네 저 동네를 떠돌며 살았다. 텃세는 매서웠지만 이 고양이는 혼자서도 꿋꿋했다." };
