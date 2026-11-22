@@ -1348,7 +1348,7 @@ window.addEventListener("DOMContentLoaded", function(){
       parts.push("<span>🐾 흩어진 새끼 " + ks.length + "마리 · " + left + "일 안에 찾아 주세요</span>");
     }
     if(wishing.length) parts.push("<span>💭 새끼의 소원 " + wishing.map(k=> k.wish.icon).join(" ") + " · 이뤄 주면 연인에게 맡길 수 있어요</span>");
-    if(sit.length) parts.push("<span>🍼 맡긴 새끼 " + sit.length + "마리 · 5턴이 지나면 외로워해요</span>");
+    if(sit.length) parts.push("<span>🍼 맡긴 새끼 " + sit.length + "마리 · 5턴이 지나면 외로워해요 · 데려와야 독립할 수 있어요</span>");
     if(!parts.length){ h.classList.remove("on"); h.innerHTML = ""; return; }
     h.innerHTML = parts.join(" &nbsp;·&nbsp; ");
     h.classList.add("on");
@@ -3629,21 +3629,32 @@ const ILLUSTRATED_BG_DATA = {
     const key = layoutKey(locId) + "|" + w + "x" + h + "|" + ((bg && bg.naturalWidth) || 0);
     if(DOOR_CACHE[key]) return DOOR_CACHE[key];
     const S = uiScale(), m = 22*S, st = 6, cols = Math.ceil(w/st) + 1, rows = Math.ceil(h/st) + 1, seen = new Uint8Array(cols*rows);
-    let s0 = { x:w/2, y:h/2 };
-    const roomy = (x, y)=> [[0,0],[10,0],[-10,0],[0,10],[0,-10]].every(o=> walkableRaw(locId, x + o[0], y + o[1]));   // 사방이 트인 자리여야 탐색이 갇히지 않는다
-    if(!roomy(s0.x, s0.y)){
-      outer: for(let r = 6; r < 700; r += 6){ for(let a = 0; a < 24; a++){ const px = w/2 + Math.cos(a/24*Math.PI*2)*r, py = h/2 + Math.sin(a/24*Math.PI*2)*r; if(px > 0 && py > 0 && px < w && py < h && roomy(px, py)){ s0 = { x:px, y:py }; break outer; } } }
+    // 화면에서 가장 큰 "이어진 길"을 기준으로 삼는다 (가운데 근처의 작은 웅덩이 같은 자리에서 시작해 출입구를 못 찾는 일을 막는다)
+    const roomy = (x, y)=> [[0,0],[10,0],[-10,0],[0,10],[0,-10]].every(o=> walkableRaw(locId, x + o[0], y + o[1]));   // 사방이 트인 자리
+    const comp = new Int32Array(cols*rows), okc = new Uint8Array(cols*rows);
+    for(let cy = 0; cy < rows; cy++) for(let cx = 0; cx < cols; cx++) okc[cy*cols + cx] = walkableRaw(locId, cx*st, cy*st) ? 1 : 0;
+    let bestId = 0, bestN = 0, cid = 0;
+    for(let k = 0; k < cols*rows; k++){
+      if(!okc[k] || comp[k]) continue;
+      cid++; let n = 0; const stk = [k]; comp[k] = cid;
+      while(stk.length){
+        const q = stk.pop(), cx = q % cols, cy = (q - cx)/cols; n++;
+        if(cx > 0 && okc[q-1] && !comp[q-1]){ comp[q-1] = cid; stk.push(q-1); }
+        if(cx < cols-1 && okc[q+1] && !comp[q+1]){ comp[q+1] = cid; stk.push(q+1); }
+        if(cy > 0 && okc[q-cols] && !comp[q-cols]){ comp[q-cols] = cid; stk.push(q-cols); }
+        if(cy < rows-1 && okc[q+cols] && !comp[q+cols]){ comp[q+cols] = cid; stk.push(q+cols); }
+      }
+      if(n > bestN){ bestN = n; bestId = cid; }
     }
-    const stack = [[Math.floor(s0.x/st), Math.floor(s0.y/st)]]; seen[stack[0][1]*cols + stack[0][0]] = 1;
-    while(stack.length){
-      const [cx, cy] = stack.pop();
-      [[1,0],[-1,0],[0,1],[0,-1]].forEach(([dx, dy])=>{
-        const nx = cx + dx, ny = cy + dy;
-        if(nx < 0 || ny < 0 || nx >= cols || ny >= rows || seen[ny*cols + nx]) return;
-        if(!walkableRaw(locId, nx*st, ny*st)) return;
-        seen[ny*cols + nx] = 1; stack.push([nx, ny]);
-      });
+    for(let k = 0; k < cols*rows; k++) seen[k] = (comp[k] === bestId && bestId) ? 1 : 0;
+    let s0 = { x:w/2, y:h/2 }, sd = 1e12, s1 = null, sd1 = 1e12;
+    for(let cy = 0; cy < rows; cy++) for(let cx = 0; cx < cols; cx++){
+      if(!seen[cy*cols + cx]) continue;
+      const px = cx*st, py = cy*st, d = (px - w/2)*(px - w/2) + (py - h/2)*(py - h/2);
+      if(d < sd1){ sd1 = d; s1 = { x:px, y:py }; }
+      if(d < sd && roomy(px, py)){ sd = d; s0 = { x:px, y:py }; }
     }
+    if(sd >= 1e12 && s1) s0 = s1;
     const reach = (x, y)=> { const cx = Math.round(x/st), cy = Math.round(y/st); return cx >= 0 && cy >= 0 && cx < cols && cy < rows && !!seen[cy*cols + cx]; };
     const res = { pts:{}, forced:[], reach, s0 };
     const hw = 28*S;
@@ -3658,6 +3669,7 @@ const ILLUSTRATED_BG_DATA = {
         if(ok && a == null) a = c;
         if(!ok && a != null){ runs.push([a, c]); a = null; }
       }
+      if(a != null) runs.push([a, len]);   // 가장자리까지 이어진 길이 3px 간격 때문에 버려지지 않게
       const cornerZone = 40*S;   // 모서리 끝에 걸친 좁은 구간은 출구로 쓰지 않는다 (가려진 구석이라 못 가는 것처럼 된다)
       const good = runs.filter(r=> r[1] - r[0] >= 14*S && (r[0] + r[1])/2 > cornerZone && (r[0] + r[1])/2 < len - cornerZone);
       const pts = [];
