@@ -1,0 +1,13 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>묘적 파일 점검</title>
+<style>body{font:15px/1.6 sans-serif;margin:16px;background:#fff8f0;color:#3a2f2a}h1{font-size:20px}.ok{color:#2a8a3a}.bad{color:#c0392b;font-weight:700}code{background:#fff;padding:1px 5px;border-radius:4px}img{max-width:320px;display:block;margin:6px 0;border:1px solid #ddd}</style></head><body>
+<h1>묘적 이미지 점검</h1><p id="sum">확인 중…</p><div id="bad"></div><h2>독립 씬 이미지</h2><div id="ind"></div>
+<script src="js/images.js"></script>
+<script>
+const M=window.__IMG||{};const keys=Object.keys(M);let done=0,bad=[];
+const sum=document.getElementById("sum"),badEl=document.getElementById("bad");
+function fin(){sum.innerHTML="전체 "+keys.length+"개 중 <b class='"+(bad.length?"bad":"ok")+"'>"+(bad.length?bad.length+"개 불러오기 실패":"모두 정상")+"</b>";
+ badEl.innerHTML=bad.map(b=>"<div class='bad'>✗ "+b[0]+" → <code>"+b[1]+"</code></div>").join("");}
+keys.forEach(k=>{const im=new Image();im.onload=()=>{if(k==="CUT_IMG_kittenIndependence"){document.getElementById("ind").appendChild(im);im.insertAdjacentHTML("beforebegin","<div class='ok'>✓ "+M[k]+" ("+im.naturalWidth+"×"+im.naturalHeight+")</div>");}if(++done===keys.length)fin();};
+ im.onerror=()=>{bad.push([k,M[k]]);if(++done===keys.length)fin();};im.src=M[k]+"?chk="+Date.now();});
+if(!keys.length)sum.textContent="js/images.js 를 읽지 못했어요.";
+</script></body></html>
