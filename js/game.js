@@ -1737,7 +1737,7 @@ window.addEventListener("DOMContentLoaded", function(){
     showDeltas(before);
     puffAt(k.x, k.y, 8); addRing(k.x, k.y, 70, "#FF9EB5", 600, "야호!"); sfx("love");
     const pal = KITTEN_PALS[k.sp % KITTEN_PALS.length].name;
-    showToast("🐱💕 " + pal + " 새끼가 " + how + " 소원이 이뤄졌다! 이제 연인에게 맡길 수 있다");
+    showToast("🐱💕 " + pal + " 새끼가 " + how + " 소원이 이뤄졌다! 이제 독립할 수 있고, 연인에게 맡길 수도 있다 (맡겨 두면 데려온 뒤에 독립해요)");
     renderKittenHud();
   }
   function kidPlaceCheck(locId){
