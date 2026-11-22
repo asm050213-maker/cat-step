@@ -1638,3 +1638,22 @@ html.is-touch .modal.has-art .end-art{ max-height:30vh; }
 #start-overlay .op-plate{object-fit:fill}
 /* 아이콘은 원본 비율 유지 (가장자리 안전 여백은 비트맵 내부에 적용). */
 .ic{background-size:contain;background-position:center;background-repeat:no-repeat}
+
+/* 서열싸움 아이콘: 상자 한가운데에 정확히 */
+#duel-overlay .duel-guide-paw .ic,#duel-overlay .duel-hud-face .ic{display:block;vertical-align:0;margin:0}
+
+/* 도감: 스크롤해도 [기록 초기화][닫기] 줄이 아래에 계속 붙어 있다 (위 내용과 20px 간격) */
+#dex-overlay .dex-modal .dex-actions{
+  position:sticky; bottom:-28px; z-index:6;
+  margin:20px -30px -28px; padding:20px 30px 22px;
+  background:#fff; border-top:1px solid #ece8f6; border-radius:0 0 20px 20px;
+  box-shadow:0 -8px 14px rgba(255,255,255,.9);
+}
+html.is-touch #dex-overlay .dex-modal .dex-actions{ bottom:-12px; margin:20px -14px -12px; padding:14px 14px 14px; border-radius:0 0 16px 16px; }
+
+/* v82: 폰 세로 화면 — 방이 세로로 길어 그림이 3분의 1만 보이던 것을, 가로가 더 보이는 비율로 제한한다 */
+@media (orientation:portrait) and (max-width:700px){
+  html.is-touch main{ justify-content:center; }
+  html.is-touch .track-card{ flex:0 0 auto; }
+  html.is-touch .room-wrap{ flex:none; height:auto; aspect-ratio:0.92 / 1; }
+}
