@@ -1650,3 +1650,10 @@ html.is-touch .modal.has-art .end-art{ max-height:30vh; }
   box-shadow:0 -8px 14px rgba(255,255,255,.9);
 }
 html.is-touch #dex-overlay .dex-modal .dex-actions{ bottom:-12px; margin:20px -14px -12px; padding:14px 14px 14px; border-radius:0 0 16px 16px; }
+
+/* v82: 폰 세로 화면 — 방이 세로로 길어 그림이 3분의 1만 보이던 것을, 가로가 더 보이는 비율로 제한한다 */
+@media (orientation:portrait) and (max-width:700px){
+  html.is-touch main{ justify-content:center; }
+  html.is-touch .track-card{ flex:0 0 auto; }
+  html.is-touch .room-wrap{ flex:none; height:auto; aspect-ratio:0.92 / 1; }
+}
