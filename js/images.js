@@ -115,7 +115,7 @@ window.__IMG = {
   ICONS_baby: "assets/ICONS_baby.webp",
   ICONS_bandage: "assets/ICONS_bandage.webp",
   ICONS_bee: "assets/ICONS_bee.webp",
-  ICONS_blackcat: "assets/ICONS_blackcat.webp",
+  ICONS_creamcat: "assets/ICONS_creamcat.webp",
   ICONS_bolt: "assets/ICONS_bolt.webp",
   ICONS_bug: "assets/ICONS_bug.webp",
   ICONS_calendar: "assets/ICONS_calendar.webp",
