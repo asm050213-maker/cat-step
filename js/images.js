@@ -25,6 +25,8 @@ window.__IMG = {
   CUT_IMG_fire1: "assets/CUT_IMG_fire1.webp",
   CUT_IMG_fire2: "assets/CUT_IMG_fire2.webp",
   CUT_IMG_fire3: "assets/CUT_IMG_fire3.webp",
+  CUT_IMG_demolition1: "assets/CUT_IMG_demolition1.webp",
+  CUT_IMG_demolition2: "assets/CUT_IMG_demolition2.webp",
   CUT_IMG_rank1a: "assets/CUT_IMG_rank1a.webp",
   CUT_IMG_rank1b: "assets/CUT_IMG_rank1b.webp",
   CUT_IMG_rank2: "assets/CUT_IMG_rank2.webp",
