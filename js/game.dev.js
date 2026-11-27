@@ -766,6 +766,8 @@ window.addEventListener("DOMContentLoaded", function(){
     fire1: __IMG.CUT_IMG_fire1,
     fire2: __IMG.CUT_IMG_fire2,
     fire3: __IMG.CUT_IMG_fire3,
+    demolition1: __IMG.CUT_IMG_demolition1,
+    demolition2: __IMG.CUT_IMG_demolition2,
     rank1a: __IMG.CUT_IMG_rank1a,
     rank1b: __IMG.CUT_IMG_rank1b,
     rank2: __IMG.CUT_IMG_rank2,
@@ -787,6 +789,10 @@ window.addEventListener("DOMContentLoaded", function(){
       { img: CUT_IMG.fire1, text:"여느 때와 다를 것 없는 밤이었다." },
       { img: CUT_IMG.fire2, text:"매캐한 냄새에 눈을 떴을 때,\n집 안은 이미 온통 붉은빛이었다." },
       { img: CUT_IMG.fire3, text:"연기를 뚫고 정신없이 달렸다.\n정신을 차려보니, 한 번도 와본 적 없는 동네다." },
+    ],
+    demolition: [
+      { img: CUT_IMG.demolition1, text:"따스한 햇살 아래, 오늘도 익숙한 보금자리에서 쉬고 있었다." },
+      { img: CUT_IMG.demolition2, text:"갑작스러운 철거 공사에 보금자리가 무너졌다.\n정신없이 달아나고 보니 낯선 동네다…" },
     ],
     adopted: [
       { img: CUT_IMG.adoptedAlone, text:"…그런데 이상하게, 무섭지 않았다." },
@@ -6832,10 +6838,8 @@ const ILLUSTRATED_BG_DATA = {
         enterRoom(state.fireEvent.startLoc); state.roomObjects = [];
         renderLocBadge(); renderAll();
       }
-      // v38: 입양 전 보금자리 철거는 컷신이 아닌 선택창으로 곧바로 이어진다.
-      // 기존에는 암전 레이어가 화면 위에 계속 남아 버튼 클릭까지 막았다.
-      // 입양 후 화재는 playCutscene(fade:true)가 암전을 해제하므로 그 경로는 유지한다.
-      if(!state.adopted) dimOut(650);
+      // 철거와 화재 모두 컷씬의 fade 경로가 암전을 해제한다.
+      // 기존 암전 타이머/차단 레이어가 선택지 클릭을 가로막지 않도록 여기서는 중복 dimOut을 하지 않는다.
       renderFireStep();
     }, 2800);
   }
@@ -6905,11 +6909,11 @@ const ILLUSTRATED_BG_DATA = {
       }
     }
 
-    // 화재의 시작은 이 게임에서 가장 큰 사건 — 3장짜리 컷신으로 연다
-    if(step === 1 && state.adopted){
+    // 입양 후 화재는 3컷, 입양 전 철거는 2컷. 마지막 컷에서 기존 선택지를 그대로 표시한다.
+    if(step === 1){
       playCutscene({
-        panels: CUT.fire,
-        fade: true, fadeKind: "fire",
+        panels: state.adopted ? CUT.fire : CUT.demolition,
+        fade: true, fadeKind: state.adopted ? "fire" : undefined,
         opts: opts,
         onPick: resolveFireOption
       });
