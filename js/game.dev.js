@@ -6966,6 +6966,11 @@ const ILLUSTRATED_BG_DATA = {
 
     if(opt.finish || opt.skipToEnd){
       state.fireEvent = null;
+      // 희귀한 즉시 발견 경로도 반드시 실제 집/보금자리 맵에 도착한 뒤 이벤트를 끝낸다.
+      // 이미 도로 미니게임 등으로 집에 도착했다면 중복 입장(위치·아이템 초기화)을 피한다.
+      if(state.currentLoc !== "home"){
+        enterRoom("home");
+      }
       advanceStageProgress();
       renderAll();
       return;
